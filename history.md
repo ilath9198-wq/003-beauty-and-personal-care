@@ -34,13 +34,17 @@
 ## 2. Header & Navigation Architecture (Responsive Hierarchy)
 
 ### Desktop / Windows View (`min-width: 992px`):
-- **Full Navigation Strip**: Primary navigation options (`Home`, `Categories`, `Formulations`, `Ritual Club`, `Salon Atelier`, `Patron Reviews`, `Menu`, `Philosophy`, `Contact`) displayed horizontally in the header navbar (`display: flex !important`).
+- **Full Navigation Strip**: Primary navigation options (`Home`, `Categories`, `Formulations`, `Rituals`, `Atelier`, `Reviews`, `Menu`, `Philosophy`, `Contact`) displayed horizontally in the header navbar (`display: flex !important; white-space: nowrap !important; gap: 1.5rem;`).
+- **Zero Two-Line Wrapping**: Strict `white-space: nowrap` and clean uppercase typography to ensure no scattered multi-line links.
 - **Hamburger Button**: Completely hidden (`display: none !important`).
 - **Header Actions**: Real-time `BAG (X)` pill button + primary `Book Atelier` CTA button.
 
 ### Mobile / Small Screen View (`max-width: 991px`):
 - **No Clutter on Header**: Horizontal navigation links and secondary CTA buttons completely hidden (`display: none !important`).
 - **Architectural Hamburger Button**: Displayed cleanly in header (`display: inline-flex !important`).
+- **Single-Line Top Info Bar**: Center-aligned, single-line announcement (`Indiranagar Flagship • Code: GLOW2026`) preventing text stacking or multiple phone lines.
+- **Inline Mobile Category Accordion**: Tapping an item expands an inline preview with the photo and CTA directly inside the item, eliminating disorienting screen jumps.
+- **Responsive Subscribe & Save Section**: Fluid button padding and responsive tier cards that stay 100% visible and never cut in half on narrow mobile viewports.
 - **Slide-Out Off-Canvas Drawer**:
   - Tapping hamburger button triggers `.nav-drawer` from the right with darkened backdrop overlay (`.drawer-backdrop`).
   - Contains all navigation options cleanly stacked with icons and badges.

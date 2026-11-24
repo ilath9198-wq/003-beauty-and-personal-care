@@ -110,7 +110,7 @@ function initMobileNavDrawer() {
 }
 
 /* ==========================================================================
-   3. DISCOVER BY CATEGORY ACCORDION (NUMA Flagship Component)
+   3. DISCOVER BY CATEGORY ACCORDION (Desktop Side-by-Side & Mobile Inline)
    ========================================================================== */
 const CATEGORY_PORTALS = {
   'cat-1': {
@@ -122,7 +122,7 @@ const CATEGORY_PORTALS = {
   'cat-2': {
     title: 'Botanical Hydrators & Barrier Balms',
     caption: 'Lipid Barrier Protection',
-    image: 'https://images.unsplash.com/photo-1608248597359-0a56e2978bb9?auto=format&fit=crop&w=1200&q=85',
+    image: 'https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=1200&q=85',
     tagline: 'Cold-pressed floral waxes, multi-weight botanical hyaluronic acid, and biomimetic squalane for 72-hour moisture locking.'
   },
   'cat-3': {
@@ -151,7 +151,7 @@ function initCategoryAccordion() {
   const portalTitle = document.getElementById('categoryPortalTitle');
   const portalCaption = document.getElementById('categoryPortalCaption');
 
-  if (!items.length || !portalImg) return;
+  if (!items.length) return;
 
   const setCategory = (catId, activeItem) => {
     const data = CATEGORY_PORTALS[catId];
@@ -160,22 +160,28 @@ function initCategoryAccordion() {
     items.forEach(it => it.classList.remove('active'));
     activeItem.classList.add('active');
 
-    // Smooth image transition
-    portalImg.style.opacity = '0';
-    portalImg.style.transform = 'scale(1.04)';
+    // Desktop portal update with smooth transition
+    if (portalImg) {
+      portalImg.style.opacity = '0';
+      portalImg.style.transform = 'scale(1.04)';
 
-    setTimeout(() => {
-      portalImg.src = data.image;
-      if (portalTitle) portalTitle.textContent = data.title;
-      if (portalCaption) portalCaption.textContent = data.caption;
-      portalImg.style.opacity = '1';
-      portalImg.style.transform = 'scale(1)';
-    }, 220);
+      setTimeout(() => {
+        portalImg.src = data.image;
+        if (portalTitle) portalTitle.textContent = data.title;
+        if (portalCaption) portalCaption.textContent = data.caption;
+        portalImg.style.opacity = '1';
+        portalImg.style.transform = 'scale(1)';
+      }, 180);
+    }
   };
 
   items.forEach(item => {
     const catId = item.getAttribute('data-cat');
-    item.addEventListener('mouseenter', () => setCategory(catId, item));
+    item.addEventListener('mouseenter', () => {
+      if (window.innerWidth >= 992) {
+        setCategory(catId, item);
+      }
+    });
     item.addEventListener('click', () => setCategory(catId, item));
   });
 }
@@ -202,7 +208,7 @@ function initProductVolumeToggles() {
         const price = pill.getAttribute('data-price');
 
         if (priceDisplay && price) {
-          priceDisplay.textContent = price;
+          priceDisplay.textContent = parseInt(price, 10).toLocaleString('en-IN');
         }
 
         // Update card attributes for quick add
@@ -492,9 +498,9 @@ function initTierSwitcher() {
       const tier = card.getAttribute('data-tier');
       if (ctaBtn) {
         if (tier === 'subscription') {
-          ctaBtn.innerHTML = 'Join Ritual Membership (Save 15%) &bull; ₹3,270 <i class="fa-solid fa-arrow-right"></i>';
+          ctaBtn.innerHTML = '<span>Join Ritual Membership (Save 15%) &bull; ₹3,270</span> <i class="fa-solid fa-arrow-right"></i>';
         } else {
-          ctaBtn.innerHTML = 'Purchase Single Flacon &bull; ₹3,850 <i class="fa-solid fa-arrow-right"></i>';
+          ctaBtn.innerHTML = '<span>Purchase Single Flacon &bull; ₹3,850</span> <i class="fa-solid fa-arrow-right"></i>';
         }
       }
     });

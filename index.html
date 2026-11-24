@@ -24,13 +24,15 @@
 <body>
 
   <!-- ==========================================================================
-       TOP INFORMATION STRIP (history.md Compliant)
+       TOP INFORMATION STRIP (history.md Compliant & Responsive)
+       Desktop: Full Info + Concierge Links | Mobile: Exactly 1 Clean Centered Line
        ========================================================================== -->
   <aside class="top-info-bar" aria-label="Atelier Announcement">
     <div class="container top-info-inner">
       <div class="top-info-badge">
         <span class="pulse-dot"></span>
-        <span>Indiranagar Flagship &bull; Complimentary Botanical Skin Consultation &bull; <strong>Code: GLOW2026</strong></span>
+        <span class="top-info-text-desktop">Indiranagar Flagship &bull; Complimentary Botanical Consultation &bull; <strong>Code: GLOW2026</strong></span>
+        <span class="top-info-text-mobile">Indiranagar Flagship &bull; Code: <strong>GLOW2026</strong></span>
       </div>
       <div class="top-info-links">
         <a href="tel:+919876543212"><i class="fa-solid fa-phone"></i> +91 98765 43212</a>
@@ -44,15 +46,16 @@
 
   <!-- ==========================================================================
        HEADER & NAVIGATION (history.md Compliant)
-       Desktop: Full Horizontal Strip | Mobile: Clean Hamburger Button
+       Desktop: Full Horizontal Strip, Zero Two-Line Wrapping | Mobile: Clean Hamburger
        ========================================================================== -->
   <header class="site-header" id="siteHeader">
     <div class="container">
       <nav class="navbar" aria-label="Main Navigation">
-        <!-- Brand Wordmark -->
+        <!-- Cohesive Brand Lockup -->
         <a href="index.html" class="brand-wordmark" aria-label="ÉLAN Beauté Atelier">
           <span class="brand-title">ĒLAN</span>
-          <span class="brand-sub">BEAUTÉ ATELIER</span>
+          <span class="brand-divider">/</span>
+          <span class="brand-sub">ATELIER</span>
         </a>
 
         <!-- Desktop Horizontal Nav Strip (display: flex on desktop per history.md) -->
@@ -60,9 +63,9 @@
           <a href="#hero" class="nav-link active">Home</a>
           <a href="#categories" class="nav-link">Categories</a>
           <a href="#formulations" class="nav-link">Formulations</a>
-          <a href="#membership" class="nav-link">Ritual Club</a>
-          <a href="#atelier" class="nav-link">Salon Atelier</a>
-          <a href="#reviews" class="nav-link">Patron Reviews</a>
+          <a href="#membership" class="nav-link">Rituals</a>
+          <a href="#atelier" class="nav-link">Atelier</a>
+          <a href="#reviews" class="nav-link">Reviews</a>
           <a href="services.html" class="nav-link">Menu</a>
           <a href="about.html" class="nav-link">Philosophy</a>
           <a href="contact.html" class="nav-link">Contact</a>
@@ -70,15 +73,15 @@
 
         <!-- Header Actions: Bag Counter Pill + Appointment CTA + Mobile Hamburger -->
         <div class="header-actions">
-          <!-- Bag Pill Trigger -->
-          <button class="header-bag-pill trigger-open-cart" aria-label="View Shopping Bag">
+          <!-- Shopping Bag Pill -->
+          <button class="header-bag-pill trigger-open-cart" aria-label="View Shopping Bag" title="Shopping Bag">
             <i class="fa-solid fa-bag-shopping"></i>
             <span>BAG</span>
             <span class="header-bag-count">0</span>
           </button>
 
-          <!-- Book Atelier Primary Button -->
-          <button class="btn btn-dark header-cta-desktop open-appointment-modal" aria-label="Book an Atelier Session">
+          <!-- Book Atelier Primary CTA Pill -->
+          <button class="btn btn-dark btn-sm header-cta-desktop open-appointment-modal" aria-label="Book an Atelier Session">
             <i class="fa-regular fa-calendar-check"></i>
             <span>Book Atelier</span>
           </button>
@@ -101,7 +104,8 @@
     <div class="drawer-top">
       <div class="brand-wordmark">
         <span class="brand-title">ĒLAN</span>
-        <span class="brand-sub">ATELIER DIRECTORY</span>
+        <span class="brand-divider">/</span>
+        <span class="brand-sub">ATELIER</span>
       </div>
       <button class="drawer-close-btn" id="closeMenuDrawer" aria-label="Close Navigation">
         <i class="fa-solid fa-xmark"></i>
@@ -257,7 +261,6 @@
 
   <!-- ==========================================================================
        HERO SECTION (NUMA EDITORIAL LUXURY DESIGN)
-       Dewy Skin Photography, Mixed Roman/Italic Headline & Watermark
        ========================================================================== -->
   <section class="hero-numa" id="hero">
     <div class="hero-watermark">ĒLAN</div>
@@ -374,8 +377,7 @@
   </section>
 
   <!-- ==========================================================================
-       DISCOVER BY CATEGORY ACCORDION (NUMA Flagship Component)
-       Hover or click on numbered item cross-fades photo portal on right
+       DISCOVER BY CATEGORY ACCORDION (Desktop Side-by-Side & Mobile Inline Accordion)
        ========================================================================== -->
   <section class="section-padding category-section" id="categories">
     <div class="container">
@@ -383,7 +385,7 @@
         <span class="section-eyebrow">ARCHITECTURAL CURATION</span>
         <h2 class="section-title">Discover by <span class="italic">Category</span></h2>
         <p class="section-subtitle">
-          Hover over each category to preview our botanical formulations and in-studio atelier experiences.
+          Explore our targeted botanical regimens calibrated for luminous, cellular vitality.
         </p>
       </div>
 
@@ -402,6 +404,12 @@
             <p class="category-item-desc">
               High-potency cellular concentrates designed to restore dermal elasticity and glow.
             </p>
+            <!-- Inline Mobile Preview (Expanded on Mobile) -->
+            <div class="category-mobile-preview">
+              <img class="category-mobile-img" src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=800&q=80" alt="Facial Elixirs">
+              <p class="category-mobile-tagline">Targeted bio-actives that repair the cellular skin matrix and restore luminescence.</p>
+              <a href="#formulations" class="btn btn-dark btn-sm">Explore Elixirs &rarr;</a>
+            </div>
           </div>
 
           <!-- 02 -->
@@ -416,6 +424,12 @@
             <p class="category-item-desc">
               Multi-weight hyaluronic infusions and ceramide creams for continuous 72-hour moisture.
             </p>
+            <!-- Inline Mobile Preview -->
+            <div class="category-mobile-preview">
+              <img class="category-mobile-img" src="https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=800&q=80" alt="Botanical Hydrators">
+              <p class="category-mobile-tagline">Cold-pressed floral waxes, multi-weight hyaluronic acid, and biomimetic squalane.</p>
+              <a href="#formulations" class="btn btn-dark btn-sm">Explore Hydrators &rarr;</a>
+            </div>
           </div>
 
           <!-- 03 -->
@@ -430,6 +444,12 @@
             <p class="category-item-desc">
               Oxygen micro-infusion, vortex extraction, and bespoke dermal therapy at Indiranagar.
             </p>
+            <!-- Inline Mobile Preview -->
+            <div class="category-mobile-preview">
+              <img class="category-mobile-img" src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=800&q=80" alt="Clinical Aesthetics">
+              <p class="category-mobile-tagline">Customized micro-infusion and lymphatic sculpting led by certified dermal therapists.</p>
+              <button class="btn btn-dark btn-sm open-appointment-modal">Book Clinical Suite &rarr;</button>
+            </div>
           </div>
 
           <!-- 04 -->
@@ -444,6 +464,12 @@
             <p class="category-item-desc">
               Japanese head spa, organic glossing treatments, and precision balayage by master stylists.
             </p>
+            <!-- Inline Mobile Preview -->
+            <div class="category-mobile-preview">
+              <img class="category-mobile-img" src="https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=800&q=80" alt="Haute Hair Artistry">
+              <p class="category-mobile-tagline">Japanese scalp head-spa, glossing rituals, and couture hair reconstruction.</p>
+              <button class="btn btn-dark btn-sm open-appointment-modal">Book Hair Spa &rarr;</button>
+            </div>
           </div>
 
           <!-- 05 -->
@@ -458,10 +484,16 @@
             <p class="category-item-desc">
               Private luxury bridal suites, bespoke makeup artistry, and luxury pre-wedding rituals.
             </p>
+            <!-- Inline Mobile Preview -->
+            <div class="category-mobile-preview">
+              <img class="category-mobile-img" src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80" alt="Couture Bridal">
+              <p class="category-mobile-tagline">Flawless HD airbrush makeup and bespoke pre-bridal radiance packages in private suites.</p>
+              <a href="bridal-makeup.html" class="btn btn-dark btn-sm">Explore Bridal Suite &rarr;</a>
+            </div>
           </div>
         </div>
 
-        <!-- Right: Dynamic High-Fashion Photo Portal -->
+        <!-- Right: Dynamic High-Fashion Photo Portal (Desktop Only) -->
         <div class="category-portal-frame reveal-on-scroll reveal-delay-2">
           <img id="categoryPortalImg" class="category-portal-img" src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=1200&q=85" alt="Botanical Category Preview">
           <div class="category-portal-overlay">
@@ -481,7 +513,6 @@
 
   <!-- ==========================================================================
        CURATED BOTANICAL FORMULATIONS (Catalog Cards with Volume Selectors)
-       Segmented In-Card Pills (30ML | 50ML | 100ML) & Real-Time Price Updating
        ========================================================================== -->
   <section class="section-padding catalog-section" id="formulations">
     <div class="container">
@@ -533,7 +564,7 @@
           </div>
         </div>
 
-        <!-- Product 2: Hydra-Infusion Botanical Essence -->
+        <!-- Product 2: Hydra-Infusion Botanical Essence (Verified Image) -->
         <div class="product-numa-card reveal-on-scroll reveal-delay-1"
              data-id="hydra-essence"
              data-name="Hydra-Infusion Botanical Essence"
@@ -541,7 +572,7 @@
              data-selected-price="2800">
           <div class="product-thumb-box">
             <span class="product-badge-pill">Hydration</span>
-            <img src="https://images.unsplash.com/photo-1608248597359-0a56e2978bb9?auto=format&fit=crop&w=800&q=80" alt="Hydra-Infusion Essence">
+            <img src="https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=800&q=80" alt="Hydra-Infusion Essence">
             <div class="product-quick-add-wrap">
               <button class="btn btn-dark btn-quick-add" style="width: 100%;">
                 <i class="fa-solid fa-plus"></i> Quick Add to Bag
@@ -652,7 +683,7 @@
   </section>
 
   <!-- ==========================================================================
-       SUBSCRIBE & SAVE 15% DUAL-TIER SECTION (NUMA Flagship Model)
+       SUBSCRIBE & SAVE 15% DUAL-TIER SECTION (100% Fully Responsive)
        ========================================================================== -->
   <section class="membership-section" id="membership">
     <div class="container">
@@ -731,7 +762,7 @@
   </section>
 
   <!-- ==========================================================================
-       ATELIER SALON & BRIDAL SERVICES (Flagship Flagship Experience)
+       ATELIER SALON & BRIDAL SERVICES (Flagship Experience)
        ========================================================================== -->
   <section class="atelier-section" id="atelier">
     <div class="container">
