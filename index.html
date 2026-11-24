@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="ÉLAN Beauty Studio - Luxury hair artistry, clinical skincare, couture bridal makeup, and personal grooming on 100ft Road Indiranagar, Bengaluru.">
+  <title>ÉLAN Beauty Studio | Luxury Salon, Skin &amp; Bridal Atelier</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Master Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/elixir-3d.css">
+
+  <!-- Three.js Engine, STLLoader & Supabase SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/STLLoader.js"></script>
+
+  <style>
+    /* Homepage Specific Styles */
+    .hero-home {
+      position: relative; min-height: 85vh; display: flex; align-items: center;
+      background: linear-gradient(to right, rgba(30, 27, 24, 0.82) 0%, rgba(30, 27, 24, 0.45) 60%, rgba(30, 27, 24, 0.2) 100%),
+                  url('https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+      color: #ffffff; padding: 6rem 0;
+    }
+    .hero-content { max-width: 680px; }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 0.6rem; font-size: 0.8rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.25em; color: var(--color-gold); margin-bottom: 1.2rem;
+    }
+    .hero-title {
+      font-family: var(--font-serif); font-size: clamp(2.8rem, 5.2vw, 4.4rem); font-weight: 700;
+      line-height: 1.12; margin-bottom: 1.4rem; color: #ffffff;
+    }
+    .hero-title span { color: var(--color-gold); font-style: italic; }
+    .hero-desc { font-size: 1.15rem; color: #e6ded8; line-height: 1.7; margin-bottom: 2.2rem; }
+    .hero-cta-group { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+
+    /* Trust Pillars */
+    .trust-strip {
+      background: #ffffff; border-bottom: 1px solid var(--color-border); padding: 2.5rem 0;
+    }
+    .trust-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; }
+    .trust-item { display: flex; align-items: center; gap: 1rem; }
+    .trust-icon {
+      width: 48px; height: 48px; border-radius: 50%; background: var(--color-gold-light);
+      display: flex; align-items: center; justify-content: center; color: var(--color-gold);
+      font-size: 1.2rem; flex-shrink: 0;
+    }
+    .trust-title { font-weight: 700; font-size: 0.95rem; color: var(--color-primary); margin-bottom: 0.2rem; }
+    .trust-sub { font-size: 0.8rem; color: var(--color-text-muted); line-height: 1.4; }
+
+    /* Featured Services Cards */
+    .services-grid-home { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; }
+    .service-card-home {
+      background: #ffffff; border-radius: var(--radius-md); overflow: hidden;
+      border: 1px solid var(--color-border); transition: var(--transition-base); display: flex; flex-direction: column;
+    }
+    .service-card-home:hover { transform: translateY(-6px); box-shadow: var(--shadow-hover); border-color: var(--color-gold); }
+    .service-thumb { height: 230px; overflow: hidden; position: relative; }
+    .service-thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+    .service-card-home:hover .service-thumb img { transform: scale(1.08); }
+    .service-tag {
+      position: absolute; top: 1rem; left: 1rem; background: rgba(33, 28, 25, 0.9);
+      color: #fff; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;
+      padding: 0.35rem 0.85rem; border-radius: 4px;
+    }
+    .service-body { padding: 1.5rem; display: flex; flex-direction: column; flex-grow: 1; }
+    .service-name { font-family: var(--font-serif); font-size: 1.25rem; font-weight: 600; color: var(--color-primary); margin-bottom: 0.5rem; }
+    .service-desc { font-size: 0.88rem; color: var(--color-text-muted); line-height: 1.6; margin-bottom: 1.2rem; }
+    .service-foot { display: flex; align-items: baseline; justify-content: space-between; margin-top: auto; padding-top: 1rem; border-top: 1px solid var(--color-border); }
+    .service-price { font-weight: 700; font-size: 1.15rem; color: var(--color-primary); }
+
+    /* Bridal Highlight Section */
+    .bridal-highlight-section {
+      background: linear-gradient(135deg, #fbf7f4 0%, #f4e9e0 100%);
+      border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border);
+    }
+    .bridal-highlight-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 4rem; align-items: center; }
+    .bridal-img-frame {
+      border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-hover);
+      border: 3px solid #ffffff; position: relative;
+    }
+
+    /* Before & After Transformations */
+    .transformations-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.2rem; }
+    .trans-card {
+      background: #ffffff; border-radius: var(--radius-md); border: 1px solid var(--color-border);
+      overflow: hidden; box-shadow: var(--shadow-sm); transition: var(--transition-base);
+    }
+    .trans-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: var(--color-gold); }
+    .trans-img-row { display: grid; grid-template-columns: 1fr 1fr; height: 220px; position: relative; }
+    .trans-img-row img { width: 100%; height: 100%; object-fit: cover; }
+    .trans-badge {
+      position: absolute; bottom: 0.6rem; padding: 0.25rem 0.6rem; border-radius: 4px;
+      font-size: 0.7rem; font-weight: 700; text-transform: uppercase; background: rgba(0,0,0,0.75); color: #fff;
+    }
+    .trans-badge.before { left: 0.6rem; }
+    .trans-badge.after { right: 0.6rem; background: var(--color-gold); }
+    .trans-body { padding: 1.4rem; }
+    .trans-title { font-family: var(--font-serif); font-size: 1.18rem; font-weight: 600; margin-bottom: 0.4rem; }
+    .trans-text { font-size: 0.85rem; color: var(--color-text-muted); line-height: 1.5; }
+
+    /* Testimonials */
+    .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+    .testi-card {
+      background: #ffffff; border: 1px solid var(--color-border); border-radius: var(--radius-md);
+      padding: 2.2rem; display: flex; flex-direction: column; justify-content: space-between;
+    }
+    .testi-stars { color: #eab308; font-size: 0.9rem; margin-bottom: 1rem; }
+    .testi-quote { font-family: var(--font-serif); font-size: 1.05rem; line-height: 1.7; color: var(--color-primary); font-style: italic; margin-bottom: 1.5rem; }
+    .testi-author { display: flex; align-items: center; gap: 0.85rem; }
+    .testi-avatar { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; }
+    .testi-author-name { font-weight: 700; font-size: 0.95rem; color: var(--color-primary); }
+    .testi-author-meta { font-size: 0.78rem; color: var(--color-text-muted); }
+
+    @media (max-width: 1024px) {
+      .services-grid-home { grid-template-columns: repeat(2, 1fr); }
+      .trust-grid { grid-template-columns: repeat(2, 1fr); }
+      .bridal-highlight-grid { grid-template-columns: 1fr; }
+      .transformations-grid, .testimonials-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 640px) {
+      .services-grid-home { grid-template-columns: 1fr; }
+      .trust-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <aside class="top-promo-bar" aria-label="Salon Announcement">
+    <div class="container top-promo-inner">
+      <div class="top-promo-message">
+        <i class="fa-solid fa-sparkles"></i>
+        <span>Indiranagar Flagship &bull; Wedding Season Consultations Now Open &bull; <strong>Code: ELANGLOW2026</strong></span>
+      </div>
+      <div class="top-promo-links">
+        <a href="tel:+919876543212"><i class="fa-solid fa-phone"></i> +91 98765 43212</a>
+        <a href="contact.html"><i class="fa-solid fa-location-dot"></i> 100ft Rd, Indiranagar, Bengaluru</a>
+        <a href="https://wa.me/919876543212?text=Hello%20ÉLAN%20Beauty%20Studio%2C%20I%20would%20like%20to%20inquire%20about%20an%20appointment." target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp Concierge</a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Clean, Minimal Header with Hamburger Menu -->
+  <header class="site-header" id="siteHeader">
+    <div class="container">
+      <nav class="navbar" aria-label="Main Navigation">
+        <!-- Logo -->
+        <a href="index.html" class="brand-logo" aria-label="ÉLAN Beauty Studio Home">
+          <div class="brand-emblem"><i class="fa-solid fa-feather-pointed"></i></div>
+          <div class="brand-text">
+            <span class="brand-name">ÉLAN <span>&bull;</span> STUDIO</span>
+            <span class="brand-tagline">HAUTE BEAUTÉ &bull; BRIDAL ATELIER</span>
+          </div>
+        </a>
+
+        <!-- Desktop Horizontal Navigation per history.md -->
+        <nav class="desktop-nav" aria-label="Main Navigation">
+          <a href="index.html" class="nav-link active">Home</a>
+          <a href="services.html" class="nav-link">Services</a>
+          <a href="bridal-makeup.html" class="nav-link">Bridal Atelier</a>
+          <a href="#botanical-lab" class="nav-link"><i class="fa-solid fa-cube" style="color: var(--color-gold);"></i> 3D Elixir Lab</a>
+          <a href="offers.html" class="nav-link">Offers</a>
+          <a href="gallery.html" class="nav-link">Gallery</a>
+          <a href="team.html" class="nav-link">Artisans</a>
+          <a href="about.html" class="nav-link">About</a>
+          <a href="contact.html" class="nav-link">Contact</a>
+        </nav>
+
+        <!-- Header Actions: Book Appointment CTA + Hamburger Button -->
+        <div class="header-actions">
+          <button class="btn btn-gold open-appointment-modal" aria-label="Book an Appointment">
+            <i class="fa-regular fa-calendar-check"></i>
+            <span>Book an Appointment</span>
+          </button>
+
+          <!-- Hamburger Menu Button (Mobile Only per history.md) -->
+          <button class="nav-hamburger-btn" id="openMenuDrawer" aria-label="Open Navigation Directory">
+            <i class="fa-solid fa-bars-staggered"></i>
+            <span>Menu</span>
+          </button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Offcanvas Navigation Drawer -->
+  <div class="drawer-backdrop" id="drawerBackdrop"></div>
+  <aside class="nav-drawer" id="navDrawer" aria-label="Website Pages Navigation">
+    <div class="drawer-top">
+      <div class="brand-text">
+        <span class="brand-name">ÉLAN <span>&bull;</span> STUDIO</span>
+        <span class="brand-tagline">NAVIGATION DIRECTORY</span>
+      </div>
+      <button class="drawer-close-btn" id="closeMenuDrawer" aria-label="Close Navigation">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+
+    <!-- Navigation Pages List -->
+    <nav class="drawer-menu-list">
+      <a href="index.html" class="drawer-nav-item">
+        <div class="nav-item-title-wrap">
+          <div class="nav-item-icon"><i class="fa-solid fa-house"></i></div>
+          <span class="nav-item-label">Home</span>
+        </div>
+        <span class="nav-item-badge">Main Hub</span>
+      </a>
+
+      <a href="#botanical-lab" class="drawer-nav-item">
+        <div class="nav-item-title-wrap">
+          <div class="nav-item-icon"><i class="fa-solid fa-cube"></i></div>
+          <span class="nav-item-label">3D Botanical Lab</span>
+        </div>
+        <span class="nav-item-badge" style="color: var(--color-gold); font-weight: 700;">Interactive 3D</span>
+      </a>
+
+      <a href="services.html" class="drawer-nav-item">
+        <div class="nav-item-title-wrap">
+          <div class="nav-item-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+          <span class="nav-item-label">Services</span>
+        </div>
+        <span class="nav-item-badge">Full Menu</span>
+      </a>
+
+      <a href="bridal-makeup.html" class="drawer-nav-item">
+        <div class="nav-item-title-wrap">
+          <div class="nav-item-icon"><i class="fa-solid fa-crown"></i></div>
+          <span class="nav-item-label">Bridal Makeup</span>
+        </div>
+        <span class="nav-item-badge" style="color: var(--color-gold); font-weight: 700;">Couture Atelier</span>
+      </a>
+
+      <a href="about.html" class="drawer-nav-item">
+        <div class="nav-item-title-wrap">
+          <div class="nav-item-icon"><i class="fa-solid fa-heart"></i></div>
+          <span class="nav-item-label">About Us</span>
+        </div>
+        <span class="nav-item-badge">Philosophy</span>
+      </a>
+
+      <a href="gallery.html" class="drawer-nav-item">
+        <div class="nav-item-title-wrap">
+          <div class="nav-item-icon"><i class="fa-solid fa-images"></i></div>
+          <span class="nav-item-label">Gallery</span>
+        </div>
+        <span class="nav-item-badge">Transformations</span>
+      </a>
+
+      <a href="team.html" class="drawer-nav-item">
+        <div class="nav-item-title-wrap">
+          <div class="nav-item-icon"><i class="fa-solid fa-user-group"></i></div>
+          <span class="nav-item-label">Our Team</span>
+        </div>
+        <span class="nav-item-badge">Master Artists</span>
+      </a>
+
+      <a href="offers.html" class="drawer-nav-item">
+        <div class="nav-item-title-wrap">
+          <div class="nav-item-icon"><i class="fa-solid fa-gift"></i></div>
+          <span class="nav-item-label">Offers &amp; Packages</span>
+        </div>
+        <span class="nav-item-badge">Seasonal Deals</span>
+      </a>
+
+      <a href="contact.html" class="drawer-nav-item">
+        <div class="nav-item-title-wrap">
+          <div class="nav-item-icon"><i class="fa-solid fa-envelope-open-text"></i></div>
+          <span class="nav-item-label">Contact Us</span>
+        </div>
+        <span class="nav-item-badge">Indiranagar</span>
+      </a>
+    </nav>
+
+    <!-- Bottom Contact Info in Drawer -->
+    <div style="margin-top: auto; padding-top: 1.5rem; border-top: 1px solid var(--color-border);">
+      <a href="https://wa.me/919876543212?text=Hello%20ÉLAN%20Beauty%20Studio%2C%20I%20would%20like%20to%20consult%20with%20a%20stylist." target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp" style="width: 100%; margin-bottom: 0.8rem;">
+        <i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp
+      </a>
+      <p style="font-size: 0.8rem; color: var(--color-text-muted); text-align: center;">
+        124 Indiranagar 100ft Road &bull; Open Daily 9:30 AM
+      </p>
+    </div>
+  </aside>
+
+  <!-- ==========================================================================
+       HERO SECTION
+       ========================================================================== -->
+  <section class="hero-home">
+    <div class="container">
+      <div class="hero-content">
+        <span class="hero-eyebrow">Haute Beauté &bull; Esthétique &bull; Bridal Atelier</span>
+        <h1 class="hero-title">
+          Your Beauty. Your Confidence. <span>Our Expertise.</span>
+        </h1>
+        <p class="hero-desc">
+          Step into an oasis of calm on 100ft Road Indiranagar. Experience bespoke hair artistry, advanced clinical skin therapies, and couture bridal makeup delivered by internationally certified artists.
+        </p>
+        <div class="hero-cta-group">
+          <button class="btn btn-gold open-appointment-modal" style="padding: 0.95rem 2.2rem; font-size: 1rem;">
+            <i class="fa-regular fa-calendar-check"></i> Book an Appointment
+          </button>
+          <a href="#botanical-lab" class="btn btn-outline" style="border-color: var(--color-gold); color: #fff; padding: 0.95rem 1.8rem;">
+            <i class="fa-solid fa-cube" style="color: var(--color-gold);"></i> 3D Botanical Lab
+          </a>
+          <a href="services.html" class="btn btn-outline" style="border-color: #fff; color: #fff; padding: 0.95rem 1.8rem;">
+            <i class="fa-solid fa-compass"></i> Explore Services
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust Pillars Strip -->
+  <section class="trust-strip">
+    <div class="container">
+      <div class="trust-grid">
+        <div class="trust-item">
+          <div class="trust-icon"><i class="fa-solid fa-leaf"></i></div>
+          <div>
+            <h4 class="trust-title">Derm-Grade Formulations</h4>
+            <p class="trust-sub">Olaplex, Kérastase &amp; Dermalogica</p>
+          </div>
+        </div>
+
+        <div class="trust-item">
+          <div class="trust-icon"><i class="fa-solid fa-shield-virus"></i></div>
+          <div>
+            <h4 class="trust-title">Hospital-Grade Hygiene</h4>
+            <p class="trust-sub">Autoclaved &amp; single-use kits</p>
+          </div>
+        </div>
+
+        <div class="trust-item">
+          <div class="trust-icon"><i class="fa-solid fa-award"></i></div>
+          <div>
+            <h4 class="trust-title">Certified Master Stylists</h4>
+            <p class="trust-sub">London &amp; Paris trained artists</p>
+          </div>
+        </div>
+
+        <div class="trust-item">
+          <div class="trust-icon"><i class="fa-solid fa-champagne-glasses"></i></div>
+          <div>
+            <h4 class="trust-title">Private VIP Salons</h4>
+            <p class="trust-sub">Dedicated bridal &amp; spa suites</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       3D BOTANICAL ELIXIR EXPERIENCE (REAL STL 3D MESH + SUBTLE ANIMATION)
+       ========================================================================== -->
+  <section class="botanical-3d-section" id="botanical-lab" aria-label="3D Botanical Elixir Experience">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow">Botanical Cellular Lab</span>
+        <h2 class="section-title">L'Élixir Botanique <span>Interactive 3D</span></h2>
+        <p class="section-subtitle">
+          Experience our bio-fermented cold-pressed formulations through real-time 3D inspection. Gentle floating physics, interactive formula switching, and pharmaceutical glass craftsmanship.
+        </p>
+      </div>
+
+      <div class="botanical-3d-grid">
+        <!-- Left: 3D STL Stage -->
+        <div class="elixir-stage">
+          <div class="elixir-glow-aura" id="elixirGlowAura"></div>
+          <div id="elixir-3d-viewport"></div>
+
+          <!-- Top Viewport Overlays -->
+          <div class="elixir-viewport-top">
+            <span class="stl-badge">
+              <span class="badge-dot"></span>
+              <span>Three.js STL Mesh // 2.8k Facets</span>
+            </span>
+            <button class="orbit-toggle-btn" id="toggleElixirOrbit" aria-label="Toggle 360 Degree Drag Orbit">
+              <i class="fa-solid fa-arrows-rotate"></i> 360&deg; Interactive Orbit
+            </button>
+          </div>
+
+          <!-- Interactive Hotspots on 3D Model -->
+          <div class="elixir-hotspot hotspot-pipette" data-info="0.25ml Laboratory Micro-Dropper for calibrated transdermal dose">
+            <div class="hotspot-pin"><i class="fa-solid fa-eye-dropper"></i></div>
+            <div class="hotspot-tag">0.25ml Micro-Pipette</div>
+          </div>
+
+          <div class="elixir-hotspot hotspot-glass" data-info="UV-Shielding Pharmaceutical Miron Violet Glass flacon preserving phytonutrient bio-activity">
+            <div class="hotspot-pin"><i class="fa-solid fa-flask"></i></div>
+            <div class="hotspot-tag">Miron Shielding Flacon</div>
+          </div>
+
+          <div class="elixir-hotspot hotspot-core" data-info="Cold-pressed Damask Rose & 24K Squalane bio-ferment core">
+            <div class="hotspot-pin"><i class="fa-solid fa-sparkles"></i></div>
+            <div class="hotspot-tag">Cellular Bio-Active Core</div>
+          </div>
+
+          <div class="elixir-hint-bottom">
+            <i class="fa-solid fa-computer-mouse"></i> Move mouse to tilt &bull; Drag or click buttons to switch formula
+          </div>
+        </div>
+
+        <!-- Right: Formulation Details & Real-Time Swatches -->
+        <div class="elixir-details-card">
+          <span class="hero-eyebrow" style="color: var(--color-gold); margin-bottom: 0.5rem; display: block;">
+            Clinical Phyto-Cosmetics
+          </span>
+          <h3 id="formulaTitleDisplay" style="font-family: var(--font-serif); font-size: 2.1rem; color: var(--color-primary); line-height: 1.25; margin-bottom: 0.4rem;">
+            L'Élixir Rose Gold Radiance
+          </h3>
+          <p id="formulaSubDisplay" style="font-size: 0.95rem; color: var(--color-gold); font-weight: 600; margin-bottom: 1.4rem;">
+            Cold-Pressed Damask Rose &amp; 24K Botanical Squalane
+          </p>
+
+          <div class="formula-swatches-grid">
+            <!-- 01: Rose Gold -->
+            <button class="formula-btn active" data-formula="rose-gold">
+              <div class="formula-info-wrap">
+                <span class="formula-color-dot" style="background: linear-gradient(135deg, #f5cfc8, #d4af37);"></span>
+                <div>
+                  <span class="formula-name-text">Rose Gold Radiance</span>
+                  <span class="formula-sub-text">Illumination &amp; Fine Line Softening</span>
+                </div>
+              </div>
+              <span class="formula-price-tag">₹3,850</span>
+            </button>
+
+            <!-- 02: Amber Apothecary -->
+            <button class="formula-btn" data-formula="amber-cell">
+              <div class="formula-info-wrap">
+                <span class="formula-color-dot" style="background: linear-gradient(135deg, #a85e2b, #c89b53);"></span>
+                <div>
+                  <span class="formula-name-text">Amber Cell Restorative</span>
+                  <span class="formula-sub-text">Bakuchiol &amp; Immortelle Flower</span>
+                </div>
+              </div>
+              <span class="formula-price-tag">₹4,200</span>
+            </button>
+
+            <!-- 03: Jade Clarifying -->
+            <button class="formula-btn" data-formula="jade-clarifying">
+              <div class="formula-info-wrap">
+                <span class="formula-color-dot" style="background: linear-gradient(135deg, #6e9684, #d6d6d6);"></span>
+                <div>
+                  <span class="formula-name-text">Jadeite Clarifying Oil</span>
+                  <span class="formula-sub-text">Blue Tansy &amp; Cold-Pressed Camellia</span>
+                </div>
+              </div>
+              <span class="formula-price-tag">₹3,650</span>
+            </button>
+          </div>
+
+          <div class="elixir-meta-box">
+            <p class="elixir-notes" id="formulaNotesDisplay">
+              Infused with organic rosehip fruit oil and micro-colloidal gold for cellular illumination and barrier replenishment.
+            </p>
+            <div class="elixir-spec-row">
+              <span><i class="fa-solid fa-vial"></i> 50ml Pipette</span>
+              <span><i class="fa-solid fa-certificate"></i> 100% Organic</span>
+              <span><i class="fa-solid fa-leaf"></i> Vegan &bull; Cruelty-Free</span>
+            </div>
+          </div>
+
+          <div class="elixir-actions">
+            <button class="btn btn-gold open-appointment-modal" data-service="L'Élixir Botanical Facial Ritual">
+              <i class="fa-regular fa-calendar-check"></i> Book Treatment with This Elixir
+            </button>
+            <a href="https://wa.me/919876543212?text=Hello%20ÉLAN%20Beauty%20Studio!%20I%20would%20like%20to%20inquire%20about%20your%20L'Élixir%20Botanique%20skincare%20formulations." target="_blank" rel="noopener" class="btn btn-outline">
+              <i class="fa-brands fa-whatsapp"></i> Inquire Formulation
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       FEATURED SERVICES SECTION
+       ========================================================================== -->
+  <section class="section-padding">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow">Signature Curations</span>
+        <h2 class="section-title">Featured Beauty Services</h2>
+        <p class="section-subtitle">
+          Immerse yourself in precision hair transformations, clinical radiance facials, and couture nail architecture tailored to your unique beauty.
+        </p>
+      </div>
+
+      <div class="services-grid-home">
+        <!-- Service 1 -->
+        <article class="service-card-home">
+          <div class="service-thumb">
+            <span class="service-tag">Hair Couture</span>
+            <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=800&q=80" alt="Precision Haircut & Styling" loading="lazy">
+          </div>
+          <div class="service-body">
+            <h3 class="service-name">Bespoke Haircut &amp; Blowout</h3>
+            <p class="service-desc">
+              Face-framing dry cut followed by a deeply restorative Kérastase caviar wash and signature red-carpet voluminous blowout.
+            </p>
+            <div class="service-foot">
+              <span class="service-price">&#8377;2,800</span>
+              <button class="btn btn-outline open-appointment-modal" data-service="Bespoke Haircut & Blowout" style="padding: 0.5rem 1rem; font-size: 0.82rem;">
+                Book Now
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Service 2 -->
+        <article class="service-card-home">
+          <div class="service-thumb">
+            <span class="service-tag">Clinical Glow</span>
+            <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=800&q=80" alt="24k Gold Hydrafacial" loading="lazy">
+          </div>
+          <div class="service-body">
+            <h3 class="service-name">24k Gold Hydrafacial</h3>
+            <p class="service-desc">
+              Vortex extraction, hyaluronic acid peptide infusion, and genuine 24k gold leaf compression for immediate luminosity.
+            </p>
+            <div class="service-foot">
+              <span class="service-price">&#8377;6,500</span>
+              <button class="btn btn-outline open-appointment-modal" data-service="24k Gold Hydrafacial" style="padding: 0.5rem 1rem; font-size: 0.82rem;">
+                Book Now
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Service 3 -->
+        <article class="service-card-home">
+          <div class="service-thumb">
+            <span class="service-tag">Bridal Artistry</span>
+            <img src="https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?auto=format&fit=crop&w=800&q=80" alt="Couture Bridal Makeup" loading="lazy">
+          </div>
+          <div class="service-body">
+            <h3 class="service-name">HD Airbrush Bridal Glam</h3>
+            <p class="service-desc">
+              Flawless 18-hour sweatproof airbrush foundation, mink lash extensions, saree draping, and bespoke hair ornamentation.
+            </p>
+            <div class="service-foot">
+              <span class="service-price">&#8377;22,000</span>
+              <button class="btn btn-outline open-appointment-modal" data-service="HD Airbrush Bridal Glam" style="padding: 0.5rem 1rem; font-size: 0.82rem;">
+                Book Now
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Service 4 -->
+        <article class="service-card-home">
+          <div class="service-thumb">
+            <span class="service-tag">Nail Studio</span>
+            <img src="https://images.unsplash.com/photo-1632345031435-8727f6897d53?auto=format&fit=crop&w=800&q=80" alt="Russian Gel Nail Art" loading="lazy">
+          </div>
+          <div class="service-body">
+            <h3 class="service-name">Russian Gel Sculpt &amp; Art</h3>
+            <p class="service-desc">
+              Precision e-file dry cuticle contouring, Japanese gel overlays, and bespoke minimalist chrome or gold foil nail artwork.
+            </p>
+            <div class="service-foot">
+              <span class="service-price">&#8377;3,400</span>
+              <button class="btn btn-outline open-appointment-modal" data-service="Russian Gel Sculpt & Art" style="padding: 0.5rem 1rem; font-size: 0.82rem;">
+                Book Now
+              </button>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <div style="text-align: center; margin-top: 3.5rem;">
+        <a href="services.html" class="btn btn-gold" style="padding: 0.9rem 2.4rem;">
+          View Full Services Menu &amp; Pricing <i class="fa-solid fa-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       BRIDAL ATELIER HIGHLIGHT
+       ========================================================================== -->
+  <section class="section-padding bridal-highlight-section">
+    <div class="container">
+      <div class="bridal-highlight-grid">
+        <div>
+          <span class="section-eyebrow">The ÉLAN Bridal Experience</span>
+          <h2 class="section-title">A Symphony of Heritage &amp; <span>Couture Radiance</span></h2>
+          <p style="font-size: 1.05rem; color: var(--color-text-muted); line-height: 1.8; margin-bottom: 1.5rem;">
+            Your wedding day demands perfection that lasts from sunrise pheras to midnight celebrations. Our bridal team blends traditional aesthetic harmony with cutting-edge Temptu airbrush technology.
+          </p>
+          <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.85rem; margin-bottom: 2rem;">
+            <li style="display: flex; align-items: center; gap: 0.75rem; font-weight: 600; color: var(--color-primary);">
+              <i class="fa-solid fa-circle-check" style="color: var(--color-gold);"></i> 18-Hour Waterproof &amp; Sweatproof Airbrush Base
+            </li>
+            <li style="display: flex; align-items: center; gap: 0.75rem; font-weight: 600; color: var(--color-primary);">
+              <i class="fa-solid fa-circle-check" style="color: var(--color-gold);"></i> Full Bridal Trials with Calibrated Photography Lighting
+            </li>
+            <li style="display: flex; align-items: center; gap: 0.75rem; font-weight: 600; color: var(--color-primary);">
+              <i class="fa-solid fa-circle-check" style="color: var(--color-gold);"></i> Master Saree Draping &amp; Real Floral Hair Setting
+            </li>
+            <li style="display: flex; align-items: center; gap: 0.75rem; font-weight: 600; color: var(--color-primary);">
+              <i class="fa-solid fa-circle-check" style="color: var(--color-gold);"></i> Available On-Location &amp; Destination Weddings Worldwide
+            </li>
+          </ul>
+
+          <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+            <a href="bridal-makeup.html" class="btn btn-gold">
+              <i class="fa-solid fa-crown"></i> Explore Bridal Portfolio
+            </a>
+            <a href="bridal-makeup.html#bridalEnquiry" class="btn btn-outline">
+              <i class="fa-regular fa-calendar-check"></i> Check Wedding Date
+            </a>
+          </div>
+        </div>
+
+        <div class="bridal-img-frame">
+          <img src="https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?auto=format&fit=crop&w=900&q=80" alt="ÉLAN Bride Portfolio" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       BEFORE & AFTER TRANSFORMATION SHOWCASE
+       ========================================================================== -->
+  <section class="section-padding">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow">Real Client Results</span>
+        <h2 class="section-title">Transformations That <span>Inspire</span></h2>
+        <p class="section-subtitle">
+          From dull hair revitalized with Balayage Botox to acne-prone skin transformed into radiant dewy glass skin.
+        </p>
+      </div>
+
+      <div class="transformations-grid">
+        <!-- Transformation 1 -->
+        <article class="trans-card">
+          <div class="trans-img-row">
+            <div style="position: relative; height: 100%;">
+              <img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=500&q=80" alt="Before Hair Transformation">
+              <span class="trans-badge before">Before</span>
+            </div>
+            <div style="position: relative; height: 100%;">
+              <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=500&q=80" alt="After Hair Transformation">
+              <span class="trans-badge after">After</span>
+            </div>
+          </div>
+          <div class="trans-body">
+            <h3 class="trans-title">Caramel Balayage &amp; Olaplex Botox</h3>
+            <p class="trans-text">Frizzy brassy hair renewed into seamless butter-caramel dimension with 95% reduced split ends.</p>
+          </div>
+        </article>
+
+        <!-- Transformation 2 -->
+        <article class="trans-card">
+          <div class="trans-img-row">
+            <div style="position: relative; height: 100%;">
+              <img src="https://images.unsplash.com/photo-1512290900672-1f4144369e8b?auto=format&fit=crop&w=500&q=80" alt="Before Skin Radiance">
+              <span class="trans-badge before">Before</span>
+            </div>
+            <div style="position: relative; height: 100%;">
+              <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=500&q=80" alt="After Skin Radiance">
+              <span class="trans-badge after">After</span>
+            </div>
+          </div>
+          <div class="trans-body">
+            <h3 class="trans-title">Hydrafacial &amp; Peptide Glass Skin</h3>
+            <p class="trans-text">Congested T-zone and uneven texture restored into plump, dewy, poreless glass skin in one 75-min session.</p>
+          </div>
+        </article>
+
+        <!-- Transformation 3 -->
+        <article class="trans-card">
+          <div class="trans-img-row">
+            <div style="position: relative; height: 100%;">
+              <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=500&q=80" alt="Before Bridal Glow">
+              <span class="trans-badge before">Before</span>
+            </div>
+            <div style="position: relative; height: 100%;">
+              <img src="https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?auto=format&fit=crop&w=500&q=80" alt="After Bridal Glow">
+              <span class="trans-badge after">After</span>
+            </div>
+          </div>
+          <div class="trans-body">
+            <h3 class="trans-title">Muhurtham Bridal Radiance</h3>
+            <p class="trans-text">Warm golden undertone matching Kanjivaram zari silk with smokey kohl eyes and feather-light foundation.</p>
+          </div>
+        </article>
+      </div>
+
+      <div style="text-align: center; margin-top: 3rem;">
+        <a href="gallery.html" class="btn btn-outline">
+          <i class="fa-regular fa-images"></i> View Full Transformation Gallery
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       CUSTOMER TESTIMONIALS
+       ========================================================================== -->
+  <section class="section-padding" style="background: #ffffff; border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border);">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow">Client Praises</span>
+        <h2 class="section-title">Loved by Bengaluru&rsquo;s <span>Discerning Women</span></h2>
+        <p class="section-subtitle">Real experiences shared by brides, corporate leaders, and skincare connoisseurs.</p>
+      </div>
+
+      <div class="testimonials-grid">
+        <div class="testi-card">
+          <div>
+            <div class="testi-stars">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            </div>
+            <p class="testi-quote">
+              &ldquo;Céline and her bridal team were divine on my wedding morning. My makeup didn&rsquo;t budge through tears, temple smoke, and 12 hours of dancing. ÉLAN is pure luxury!&rdquo;
+            </p>
+          </div>
+          <div class="testi-author">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80" alt="Rhea Sen" class="testi-avatar">
+            <div>
+              <div class="testi-author-name">Rhea Sen-Chatterjee</div>
+              <div class="testi-author-meta">Bride &bull; Indiranagar, Bengaluru</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testi-card">
+          <div>
+            <div class="testi-stars">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            </div>
+            <p class="testi-quote">
+              &ldquo;Arjun is a wizard with color. He crafted a dimensional mocha balayage that looks effortless and natural. Plus, the scalp massage with organic botanical oil is heaven.&rdquo;
+            </p>
+          </div>
+          <div class="testi-author">
+            <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=150&q=80" alt="Priyanka Nair" class="testi-avatar">
+            <div>
+              <div class="testi-author-name">Dr. Priyanka Nair</div>
+              <div class="testi-author-meta">Consultant Cardiologist &bull; Lavelle Road</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testi-card">
+          <div>
+            <div class="testi-stars">
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            </div>
+            <p class="testi-quote">
+              &ldquo;The hygiene standards here put hospitals to shame. Everything comes in pre-sterilized pouches, and the Russian manicure lasted 4 full weeks without a chip!&rdquo;
+            </p>
+          </div>
+          <div class="testi-author">
+            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=150&q=80" alt="Ananya Hegde" class="testi-avatar">
+            <div>
+              <div class="testi-author-name">Ananya Hegde</div>
+              <div class="testi-author-meta">Tech Executive &bull; Koramangala</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       PROMOTIONAL OFFERS CTA
+       ========================================================================== -->
+  <section class="section-padding">
+    <div class="container">
+      <div style="background: linear-gradient(135deg, #1e1b18 0%, #2b2522 100%); border-radius: var(--radius-lg); padding: 4rem 3rem; color: #ffffff; text-align: center; border: 1px solid var(--color-gold-border); position: relative; overflow: hidden;">
+        <span class="section-eyebrow" style="color: var(--color-gold);">Limited Period Showcase</span>
+        <h2 style="font-family: var(--font-serif); font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; margin-bottom: 1rem; color: #fff;">
+          The Festive Radiance Package
+        </h2>
+        <p style="font-size: 1.1rem; color: #d8cec7; max-width: 650px; margin: 0 auto 2rem; line-height: 1.7;">
+          Enjoy a complimentary Kérastase conditioning ritual and express gel manicure with any clinical Hydrafacial booked this month.
+        </p>
+        <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+          <a href="offers.html" class="btn btn-gold" style="padding: 0.9rem 2.2rem;">
+            <i class="fa-solid fa-tags"></i> Explore All Packages
+          </a>
+          <button class="btn btn-outline open-appointment-modal" data-service="Festive Radiance Package" style="border-color: #fff; color: #fff;">
+            <i class="fa-regular fa-calendar-check"></i> Claim Offer Slot
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       LOCATION & HOURS SNAPSHOT
+       ========================================================================== -->
+  <section class="section-padding" style="background: var(--color-bg-subtle); border-top: 1px solid var(--color-border);">
+    <div class="container">
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3.5rem; align-items: center;">
+        <div>
+          <span class="section-eyebrow">Visit Our Sanctuary</span>
+          <h2 class="section-title">Indiranagar <span>Flagship Studio</span></h2>
+          <p style="font-size: 1.05rem; color: var(--color-text-muted); line-height: 1.7; margin-bottom: 1.8rem;">
+            Located on prominent 100ft Road with dedicated valet parking and quiet private treatment suites away from the bustling streetscape.
+          </p>
+
+          <div style="display: flex; flex-direction: column; gap: 1rem; margin-bottom: 2rem;">
+            <div style="display: flex; gap: 0.8rem; align-items: flex-start;">
+              <i class="fa-solid fa-location-dot" style="color: var(--color-gold); font-size: 1.2rem; margin-top: 3px;"></i>
+              <div>
+                <strong>Address:</strong> 124 Indiranagar 100ft Road, Near Domlur Flyover Junction, Bengaluru 560038
+              </div>
+            </div>
+            <div style="display: flex; gap: 0.8rem; align-items: flex-start;">
+              <i class="fa-regular fa-clock" style="color: var(--color-gold); font-size: 1.2rem; margin-top: 3px;"></i>
+              <div>
+                <strong>Operational Hours:</strong> Tuesday – Sunday: 9:30 AM – 8:30 PM (Mondays by prior bridal appointment)
+              </div>
+            </div>
+            <div style="display: flex; gap: 0.8rem; align-items: flex-start;">
+              <i class="fa-solid fa-phone" style="color: var(--color-gold); font-size: 1.2rem; margin-top: 3px;"></i>
+              <div>
+                <strong>Direct Line:</strong> <a href="tel:+919876543212" style="color: var(--color-primary); font-weight: 700;">+91 98765 43212</a>
+              </div>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 1rem;">
+            <a href="contact.html" class="btn btn-primary">
+              <i class="fa-solid fa-map-location-dot"></i> Get Directions &amp; Details
+            </a>
+            <a href="https://wa.me/919876543212?text=Hello%20ÉLAN%20Beauty%20Studio%2C%20I%20would%20like%20to%20know%20about%20availability." target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp">
+              <i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp
+            </a>
+          </div>
+        </div>
+
+        <div style="border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-md); border: 2px solid #ffffff; height: 380px;">
+          <img src="https://images.unsplash.com/photo-1527799820374-dcf8d9d4a388?auto=format&fit=crop&w=1000&q=80" alt="Salon Interior Ambience" style="width: 100%; height: 100%; object-fit: cover;">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Global Appointment Booking Modal -->
+  <div class="modal-backdrop" id="appointmentModalBackdrop">
+    <div class="modal-box">
+      <button class="modal-close-icon" id="closeAppointmentModalBtn" aria-label="Close Booking Modal">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <!-- Booking Form View -->
+      <div id="modalFormView">
+        <div style="text-align: center; margin-bottom: 1.8rem;">
+          <span class="section-eyebrow">Direct Studio Booking</span>
+          <h3 style="font-family: var(--font-serif); font-size: 1.7rem; color: var(--color-primary); margin-bottom: 0.4rem;">
+            Reserve Your Appointment
+          </h3>
+          <p style="font-size: 0.88rem; color: var(--color-text-muted);">
+            Select your preferred treatment, date, and artist. Instant confirmation dispatched.
+          </p>
+        </div>
+
+        <form id="globalAppointmentForm">
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="aptName" class="form-label">Full Name *</label>
+              <input type="text" id="aptName" class="form-control" placeholder="e.g. Shalini Sharma" required>
+            </div>
+
+            <div class="form-group">
+              <label for="aptPhone" class="form-label">Mobile Number *</label>
+              <input type="tel" id="aptPhone" class="form-control" placeholder="+91 98765 00000" required>
+            </div>
+
+            <div class="form-group full-width">
+              <label for="aptService" class="form-label">Desired Treatment / Service *</label>
+              <select id="aptService" class="form-control" required>
+                <option value="">Select a service category</option>
+                <option value="Bespoke Haircut & Blowout">Bespoke Haircut &amp; Blowout (₹2,800)</option>
+                <option value="Caramel Balayage & Olaplex">Caramel Balayage &amp; Olaplex (₹7,500)</option>
+                <option value="24k Gold Hydrafacial">24k Gold Hydrafacial (₹6,500)</option>
+                <option value="HD Airbrush Bridal Glam">HD Airbrush Bridal Glam (₹22,000)</option>
+                <option value="Russian Gel Sculpt & Art">Russian Gel Sculpt &amp; Art (₹3,400)</option>
+                <option value="Aromatherapy Relaxing Spa">Aromatherapy Relaxing Spa (₹4,200)</option>
+                <option value="Festive Radiance Package">Festive Radiance Package (Special)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="aptDate" class="form-label">Preferred Date *</label>
+              <input type="date" id="aptDate" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+              <label for="aptTime" class="form-label">Preferred Time Slot *</label>
+              <select id="aptTime" class="form-control" required>
+                <option value="">Select hour</option>
+                <option value="10:00 AM">10:00 AM – Morning Session</option>
+                <option value="12:30 PM">12:30 PM – Afternoon Slot</option>
+                <option value="03:00 PM">03:00 PM – Tea &amp; Glow</option>
+                <option value="05:30 PM">05:30 PM – Evening Styling</option>
+                <option value="07:00 PM">07:00 PM – Sunset Session</option>
+              </select>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-gold" style="width: 100%; padding: 0.95rem; font-size: 1rem; margin-top: 0.5rem;">
+            <i class="fa-regular fa-calendar-check"></i> Confirm Appointment Request
+          </button>
+          <p style="font-size: 0.72rem; color: #a19790; text-align: center; margin-top: 0.8rem;">
+            Demonstration booking &bull; Instant front-end confirmation voucher generated.
+          </p>
+        </form>
+      </div>
+
+      <!-- Confirmation View -->
+      <div id="modalConfirmationView" style="display: none; text-align: center;">
+        <div style="width: 60px; height: 60px; border-radius: 50%; background: var(--color-gold-light); color: var(--color-gold); display: flex; align-items: center; justify-content: center; font-size: 1.8rem; margin: 0 auto 1.2rem;">
+          <i class="fa-solid fa-check"></i>
+        </div>
+        <h3 style="font-family: var(--font-serif); font-size: 1.7rem; color: var(--color-primary); margin-bottom: 0.4rem;">
+          Booking Request Received!
+        </h3>
+        <p style="font-size: 0.95rem; color: var(--color-text-muted); margin-bottom: 1.4rem;">
+          Thank you, <strong id="confClientName">Client</strong>. Your private treatment slot is reserved at ÉLAN Studio.
+        </p>
+
+        <div style="background: var(--color-bg-subtle); padding: 1.2rem; border-radius: var(--radius-md); text-align: left; margin-bottom: 1.5rem; font-size: 0.88rem; line-height: 1.8;">
+          <div><strong>Booking Ref:</strong> <span id="confRefCode" style="color: var(--color-gold); font-weight: 700;">#ELAN-APT-2026-8812</span></div>
+          <div><strong>Treatment:</strong> <span id="confDetails">Hydrafacial on Date at Time</span></div>
+          <div><strong>Location:</strong> 124 Indiranagar 100ft Road, Bengaluru</div>
+          <div><strong>Valet:</strong> Complimentary on arrival</div>
+        </div>
+
+        <div style="display: flex; gap: 0.8rem;">
+          <button class="btn btn-primary" id="modalDoneBtn" style="flex: 1;">
+            Done
+          </button>
+          <a id="confWhatsAppBtn" href="#" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp" style="flex: 1;">
+            <i class="fa-brands fa-whatsapp"></i> WhatsApp Stylist
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="brand-name" style="color: #fff; margin-bottom: 0.8rem;">ÉLAN <span>&bull;</span> STUDIO</div>
+          <p style="font-size: 0.88rem; color: #a89d95; line-height: 1.7; margin-bottom: 1.5rem;">
+            A sanctuary of haute beauté celebrating bespoke hair artistry, clinical dermal rejuvenation, Russian nail sculpting, and couture bridal aesthetics in Bengaluru.
+          </p>
+          <div style="display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(197, 155, 109, 0.15); border: 1px solid var(--color-gold-border); padding: 0.4rem 0.9rem; border-radius: var(--radius-full); font-size: 0.78rem; color: #e8d5be;">
+            <i class="fa-solid fa-certificate"></i> Infinity Smart India &bull; Beauty Demonstration 003
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Studio Pages</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Our Atelier</a></li>
+            <li><a href="services.html">Services &amp; Pricing</a></li>
+            <li><a href="bridal-makeup.html">Bridal Makeup Couture</a></li>
+            <li><a href="gallery.html">Visual Transformations</a></li>
+            <li><a href="team.html">Our Master Artists</a></li>
+            <li><a href="offers.html">Seasonal Packages</a></li>
+            <li><a href="contact.html">Contact &amp; Location</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Operating Hours</h4>
+          <div style="display: flex; flex-direction: column; gap: 0.6rem; font-size: 0.85rem; color: #a89d95;">
+            <div>Tuesday – Saturday: 9:30 AM – 8:30 PM</div>
+            <div>Sunday: 10:00 AM – 8:00 PM</div>
+            <div>Monday: Closed (Private Bridal Bookings Only)</div>
+            <div style="margin-top: 0.5rem; color: var(--color-gold);">Complimentary Valet Parking Available</div>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Location &amp; Inquiries</h4>
+          <p style="font-size: 0.88rem; color: #a89d95; line-height: 1.6; margin-bottom: 1rem;">
+            124 Indiranagar 100ft Road, Near Domlur Flyover, Bengaluru 560038
+          </p>
+          <a href="tel:+919876543212" style="display: block; color: #fff; font-weight: 600; font-size: 0.9rem; margin-bottom: 0.4rem;">
+            <i class="fa-solid fa-phone" style="color: var(--color-gold);"></i> +91 98765 43212
+          </a>
+          <a href="mailto:concierge@elanbeautystudio.com" style="display: block; color: #a89d95; font-size: 0.85rem;">
+            <i class="fa-regular fa-envelope" style="color: var(--color-gold);"></i> concierge@elanbeautystudio.com
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 ÉLAN Beauty Studio. All rights reserved. Fictional business showcase.</div>
+        <div>Crafted by <strong>Infinity Smart India</strong> – Luxury Salon Web Solutions</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Mobile Bottom Quick Dock per history.md -->
+  <nav class="mobile-quick-dock" aria-label="Mobile Quick Access">
+    <a href="tel:+919876543212" class="dock-item">
+      <i class="fa-solid fa-phone"></i>
+      <span>Call</span>
+    </a>
+    <a href="services.html" class="dock-item">
+      <i class="fa-solid fa-wand-magic-sparkles"></i>
+      <span>Services</span>
+    </a>
+    <button class="dock-item open-appointment-modal" data-service="Mobile Quick Booking" style="background:none;border:none;">
+      <i class="fa-regular fa-calendar-check"></i>
+      <span>Book</span>
+    </button>
+    <a href="#botanical-lab" class="dock-item">
+      <i class="fa-solid fa-cube"></i>
+      <span>3D Lab</span>
+    </a>
+    <a href="https://wa.me/919876543212?text=Hello%20ÉLAN%20Beauty%20Studio!%20I%20would%20like%20to%20inquire%20about%20an%20appointment." target="_blank" rel="noopener" class="dock-item">
+      <i class="fa-brands fa-whatsapp"></i>
+      <span>WhatsApp</span>
+    </a>
+  </nav>
+
+  <!-- Master Interactive Scripts per history.md -->
+  <script src="js/supabase-client.js"></script>
+  <script src="js/elixir-3d.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

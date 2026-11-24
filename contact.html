@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Contact ÉLAN Beauty Studio on 100ft Road Indiranagar, Bengaluru. Salon timings, location map, direct telephone, WhatsApp concierge, and appointment booking form.">
+  <title>Contact Us &amp; Salon Appointment Desk | ÉLAN Beauty Studio</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Master Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <style>
+    .contact-layout { display: grid; grid-template-columns: 1fr 1.25fr; gap: 3.5rem; align-items: start; }
+
+    /* Contact Details Card */
+    .contact-info-card {
+      background: #ffffff; border-radius: var(--radius-lg); border: 1px solid var(--color-border);
+      padding: 2.8rem; box-shadow: var(--shadow-sm);
+    }
+    .contact-block { margin-bottom: 2rem; }
+    .contact-block:last-child { margin-bottom: 0; }
+    .contact-block-header { display: flex; align-items: center; gap: 0.85rem; margin-bottom: 0.8rem; }
+    .contact-block-icon {
+      width: 40px; height: 40px; border-radius: var(--radius-sm); background: var(--color-gold-light);
+      display: flex; align-items: center; justify-content: center; color: var(--color-gold); font-size: 1.15rem;
+    }
+    .contact-block-title { font-family: var(--font-serif); font-size: 1.25rem; font-weight: 600; color: var(--color-primary); }
+    .contact-block-body { font-size: 0.95rem; color: var(--color-text-muted); line-height: 1.7; padding-left: 3.4rem; }
+
+    /* Timings Table */
+    .hours-table { width: 100%; border-collapse: collapse; margin-top: 0.5rem; }
+    .hours-table tr { border-bottom: 1px dashed var(--color-border); }
+    .hours-table tr:last-child { border-bottom: none; }
+    .hours-table td { padding: 0.6rem 0; font-size: 0.9rem; }
+    .hours-table td:last-child { text-align: right; font-weight: 600; color: var(--color-primary); }
+
+    /* Form Card */
+    .contact-form-card {
+      background: #ffffff; border-radius: var(--radius-lg); border: 1px solid var(--color-border);
+      padding: 3rem; box-shadow: var(--shadow-md);
+    }
+
+    /* Map Box */
+    .map-box {
+      border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--color-border);
+      box-shadow: var(--shadow-md); background: #ffffff; height: 380px; width: 100%; margin-top: 2rem;
+    }
+    .map-box iframe { width: 100%; height: 100%; border: none; }
+
+    /* FAQ Accordion */
+    .faq-item {
+      background: #ffffff; border-radius: var(--radius-md); border: 1px solid var(--color-border);
+      margin-bottom: 1rem; overflow: hidden; transition: var(--transition-base);
+    }
+    .faq-question {
+      width: 100%; text-align: left; padding: 1.4rem 1.8rem; font-family: var(--font-serif);
+      font-size: 1.15rem; font-weight: 600; color: var(--color-primary); display: flex;
+      justify-content: space-between; align-items: center; gap: 1rem; cursor: pointer;
+    }
+    .faq-question i { font-size: 0.9rem; color: var(--color-gold); transition: transform 0.3s ease; }
+    .faq-item.active .faq-question i { transform: rotate(180deg); }
+    .faq-answer {
+      max-height: 0; overflow: hidden; transition: max-height 0.35s ease;
+      padding: 0 1.8rem; font-size: 0.92rem; color: var(--color-text-muted); line-height: 1.7;
+    }
+    .faq-item.active .faq-answer { max-height: 200px; padding-bottom: 1.4rem; }
+
+    @media (max-width: 992px) {
+      .contact-layout { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 640px) {
+      .contact-info-card, .contact-form-card { padding: 1.8rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <aside class="top-promo-bar" aria-label="Salon Announcement">
+    <div class="container top-promo-inner">
+      <div class="top-promo-message">
+        <i class="fa-solid fa-sparkles"></i>
+        <span>Indiranagar Flagship &bull; Wedding Season Consultations Now Open &bull; <strong>Code: ELANGLOW2026</strong></span>
+      </div>
+      <div class="top-promo-links">
+        <a href="tel:+919876543212"><i class="fa-solid fa-phone"></i> +91 98765 43212</a>
+        <a href="contact.html"><i class="fa-solid fa-location-dot"></i> 100ft Rd, Indiranagar, Bengaluru</a>
+        <a href="https://wa.me/919876543212?text=Hello%20ÉLAN%20Beauty%20Studio%2C%20I%20would%20like%20to%20book%20an%20appointment." target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp Concierge</a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Clean Minimal Header with Hamburger Menu -->
+  <header class="site-header" id="siteHeader">
+    <div class="container">
+      <nav class="navbar" aria-label="Main Navigation">
+        <!-- Logo -->
+        <a href="index.html" class="brand-logo" aria-label="ÉLAN Beauty Studio Home">
+          <div class="brand-emblem"><i class="fa-solid fa-feather-pointed"></i></div>
+          <div class="brand-text">
+            <span class="brand-name">ÉLAN <span>&bull;</span> STUDIO</span>
+            <span class="brand-tagline">HAUTE BEAUTÉ &bull; BRIDAL ATELIER</span>
+          </div>
+        </a>
+
+        <!-- Header Actions: Book Appointment CTA + Hamburger Button -->
+                <!-- Desktop Horizontal Navigation per history.md -->
+        <nav class="desktop-nav" aria-label="Main Navigation">
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="services.html" class="nav-link">Services</a>
+          <a href="bridal-makeup.html" class="nav-link">Bridal Atelier</a>
+          <a href="index.html#botanical-lab" class="nav-link"><i class="fa-solid fa-cube" style="color: var(--color-gold);"></i> 3D Elixir Lab</a>
+          <a href="offers.html" class="nav-link">Offers</a>
+          <a href="gallery.html" class="nav-link">Gallery</a>
+          <a href="team.html" class="nav-link">Artisans</a>
+          <a href="about.html" class="nav-link">About</a>
+          <a href="contact.html" class="nav-link">Contact</a>
+        </nav>
+        <div class="header-actions">
+          <button class="btn btn-gold open-appointment-modal" aria-label="Book an Appointment">
+            <i class="fa-regular fa-calendar-check"></i>
+            <span>Book an Appointment</span>
+          </button>
+
+          <button class="nav-hamburger-btn" id="openMenuDrawer" aria-label="Open Navigation Directory">
+            <i class="fa-solid fa-bars-staggered"></i>
+            <span>Menu</span>
+          </button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Offcanvas Navigation Drawer -->
+  <div class="drawer-backdrop" id="drawerBackdrop"></div>
+  <aside class="nav-drawer" id="navDrawer" aria-label="Website Pages Navigation">
+    <div class="drawer-top">
+      <div class="brand-text">
+        <span class="brand-name">ÉLAN <span>&bull;</span> STUDIO</span>
+        <span class="brand-tagline">NAVIGATION DIRECTORY</span>
+      </div>
+      <button class="drawer-close-btn" id="closeMenuDrawer" aria-label="Close Navigation">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+
+    <!-- Navigation Pages List -->
+    <nav class="drawer-menu-list">
+      <a href="index.html" class="drawer-nav-item">
+        <div class="nav-item-title-wrap">
+          <div class="nav-item-icon"><i class="fa-solid fa-house"></i></div>
+          <span class="nav-item-label">Home</span>
+        </div>
+        <span class="nav-item-badge">Main Hub</span>
+      </a>
+
+      <a href="about.html" class="drawer-nav-item">
+        <div class="nav-item-title-wrap">
+          <div class="nav-item-icon"><i class="fa-solid fa-heart"></i></div>
+          <span class="nav-item-label">About Us</span>
+        </div>
+        <span class="nav-item-badge">Philosophy</span>
+      </a>
+
+      <a href="services.html" class="drawer-nav-item">
+        <div class="nav-item-title-wrap">
+          <div class="nav-item-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+          <span class="nav-item-label">Services</span>
+        </div>
+        <span class="nav-item-badge">Full Menu</span>
+      </a>
+
+      <a href="bridal-makeup.html" class="drawer-nav-item">
+        <div class="nav-item-title-wrap">
+          <div class="nav-item-icon"><i class="fa-solid fa-crown"></i></div>
+          <span class="nav-item-label">Bridal Makeup</span>
+        </div>
+        <span class="nav-item-badge" style="color: var(--color-gold); font-weight: 700;">Couture Atelier</span>
+      </a>
+
+      <a href="gallery.html" class="drawer-nav-item">
+        <div class="nav-item-title-wrap">
+          <div class="nav-item-icon"><i class="fa-solid fa-images"></i></div>
+          <span class="nav-item-label">Gallery</span>
+        </div>
+        <span class="nav-item-badge">Transformations</span>
+      </a>
+
+      <a href="team.html" class="drawer-nav-item">
+        <div class="nav-item-title-wrap">
+          <div class="nav-item-icon"><i class="fa-solid fa-user-group"></i></div>
+          <span class="nav-item-label">Our Team</span>
+        </div>
+        <span class="nav-item-badge">Master Artists</span>
+      </a>
+
+      <a href="offers.html" class="drawer-nav-item">
+        <div class="nav-item-title-wrap">
+          <div class="nav-item-icon"><i class="fa-solid fa-gift"></i></div>
+          <span class="nav-item-label">Offers &amp; Packages</span>
+        </div>
+        <span class="nav-item-badge">Seasonal Deals</span>
+      </a>
+
+      <a href="contact.html" class="drawer-nav-item active">
+        <div class="nav-item-title-wrap">
+          <div class="nav-item-icon"><i class="fa-solid fa-envelope-open-text"></i></div>
+          <span class="nav-item-label">Contact Us</span>
+        </div>
+        <span class="nav-item-badge">Indiranagar</span>
+      </a>
+    </nav>
+
+    <!-- Bottom Contact Info in Drawer -->
+    <div style="margin-top: auto; padding-top: 1.5rem; border-top: 1px solid var(--color-border);">
+      <a href="https://wa.me/919876543212?text=Hello%20ÉLAN%20Beauty%20Studio%2C%20I%20would%20like%20to%20consult%20with%20a%20stylist." target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp" style="width: 100%; margin-bottom: 0.8rem;">
+        <i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp
+      </a>
+      <p style="font-size: 0.8rem; color: var(--color-text-muted); text-align: center;">
+        124 Indiranagar 100ft Road &bull; Open Daily 9:30 AM
+      </p>
+    </div>
+  </aside>
+
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <div class="container">
+      <div class="page-breadcrumbs">
+        <a href="index.html">Home</a>
+        <i class="fa-solid fa-chevron-right" style="font-size: 0.65rem;"></i>
+        <span>Contact Us</span>
+      </div>
+      <h1 class="page-hero-title">Studio Concierge &amp; <span>Appointments</span></h1>
+      <p class="page-hero-desc">
+        Connect with our studio team on 100ft Road Indiranagar. Book custom hair treatments, bridal trials, or clinical skin therapies with dedicated valet service.
+      </p>
+    </div>
+  </section>
+
+  <!-- Main Contact & Appointment Section -->
+  <main class="section-padding">
+    <div class="container">
+      <div class="contact-layout">
+        <!-- Studio Details & Map Column -->
+        <div>
+          <div class="contact-info-card">
+            <!-- Address -->
+            <div class="contact-block">
+              <div class="contact-block-header">
+                <div class="contact-block-icon"><i class="fa-solid fa-location-dot"></i></div>
+                <h3 class="contact-block-title">Studio Sanctuary</h3>
+              </div>
+              <div class="contact-block-body">
+                <p style="font-weight: 700; color: var(--color-primary);">ÉLAN Beauty Studio</p>
+                <p>124 Indiranagar 100ft Road,</p>
+                <p>Near Domlur Flyover Junction,</p>
+                <p>Bengaluru, Karnataka 560038, India</p>
+              </div>
+            </div>
+
+            <!-- Operating Hours -->
+            <div class="contact-block">
+              <div class="contact-block-header">
+                <div class="contact-block-icon"><i class="fa-regular fa-clock"></i></div>
+                <h3 class="contact-block-title">Operational Hours</h3>
+              </div>
+              <div class="contact-block-body">
+                <table class="hours-table">
+                  <tr>
+                    <td>Tuesday – Saturday</td>
+                    <td>9:30 AM – 8:30 PM</td>
+                  </tr>
+                  <tr>
+                    <td>Sunday</td>
+                    <td>10:00 AM – 8:00 PM</td>
+                  </tr>
+                  <tr>
+                    <td>Monday</td>
+                    <td style="color: var(--color-gold);">Closed (Private Bridal Appointments Only)</td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+
+            <!-- Direct Channels -->
+            <div class="contact-block">
+              <div class="contact-block-header">
+                <div class="contact-block-icon"><i class="fa-solid fa-phone"></i></div>
+                <h3 class="contact-block-title">Direct Inquiries</h3>
+              </div>
+              <div class="contact-block-body">
+                <p style="margin-bottom: 0.4rem;">
+                  Telephone: <a href="tel:+919876543212" style="font-weight: 700; color: var(--color-primary);">+91 98765 43212</a>
+                </p>
+                <p style="margin-bottom: 0.8rem;">
+                  Email: <a href="mailto:concierge@elanbeautystudio.com" style="color: var(--color-gold);">concierge@elanbeautystudio.com</a>
+                </p>
+                <a href="https://wa.me/919876543212?text=Hello%20ÉLAN%20Beauty%20Studio%2C%20I%20have%20an%20appointment%20inquiry." target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp" style="width: 100%; margin-top: 0.5rem;">
+                  <i class="fa-brands fa-whatsapp"></i> Instant WhatsApp Concierge
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Embedded Map -->
+          <div class="map-box">
+            <iframe 
+              title="ÉLAN Beauty Studio Indiranagar Map"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.026725227311!2d77.63853431526673!3d12.971168990856272!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae16a75f850e05%3A0x6b2ff870198038b6!2s100%20Feet%20Rd%2C%20Indiranagar%2C%20Bengaluru%2C%20Karnataka!5e0!3m2!1sen!2sin!4v1680000000000!5m2!1sen!2sin" 
+              allowfullscreen="" 
+              loading="lazy" 
+              referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+          </div>
+        </div>
+
+        <!-- Comprehensive Appointment Form Column -->
+        <div class="contact-form-card">
+          <div style="margin-bottom: 2rem;">
+            <span class="section-eyebrow">Priority Scheduling</span>
+            <h2 style="font-family: var(--font-serif); font-size: 2rem; color: var(--color-primary); margin-bottom: 0.4rem;">
+              Book an Appointment
+            </h2>
+            <p style="font-size: 0.92rem; color: var(--color-text-muted);">
+              Fill in your details below. Our studio coordinator will confirm your session within 60 minutes.
+            </p>
+          </div>
+
+          <form id="contactPageForm">
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="contactName" class="form-label">Full Name *</label>
+                <input type="text" id="contactName" class="form-control" placeholder="e.g. Shalini Sharma" required>
+              </div>
+
+              <div class="form-group">
+                <label for="contactPhone" class="form-label">Phone Number *</label>
+                <input type="tel" id="contactPhone" class="form-control" placeholder="+91 98765 00000" required>
+              </div>
+
+              <div class="form-group">
+                <label for="contactEmail" class="form-label">Email Address *</label>
+                <input type="email" id="contactEmail" class="form-control" placeholder="shalini@example.com" required>
+              </div>
+
+              <div class="form-group">
+                <label for="contactService" class="form-label">Service Category *</label>
+                <select id="contactService" class="form-control" required>
+                  <option value="">Select Category</option>
+                  <option value="Hair Couture (Cut, Color, Balayage)">Hair Couture (Cut, Color, Balayage)</option>
+                  <option value="Clinical Hydrafacial & Skincare">Clinical Hydrafacial &amp; Skincare</option>
+                  <option value="Russian Gel Nails & Pedicure">Russian Gel Nails &amp; Pedicure</option>
+                  <option value="Bridal Makeup Consultation & Trial">Bridal Makeup Consultation &amp; Trial</option>
+                  <option value="Body Waxing & Grooming">Body Waxing &amp; Grooming</option>
+                  <option value="Balinese Aromatherapy Spa">Balinese Aromatherapy Spa</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="contactDate" class="form-label">Preferred Date *</label>
+                <input type="date" id="contactDate" class="form-control" required>
+              </div>
+
+              <div class="form-group">
+                <label for="contactTime" class="form-label">Preferred Time Slot *</label>
+                <select id="contactTime" class="form-control" required>
+                  <option value="">Select hour</option>
+                  <option value="10:00 AM">10:00 AM – Morning Session</option>
+                  <option value="12:30 PM">12:30 PM – Afternoon Slot</option>
+                  <option value="03:00 PM">03:00 PM – Tea &amp; Glow</option>
+                  <option value="05:30 PM">05:30 PM – Evening Styling</option>
+                  <option value="07:00 PM">07:00 PM – Sunset Session</option>
+                </select>
+              </div>
+
+              <div class="form-group full-width">
+                <label for="contactNotes" class="form-label">Specific Requirements / Skin &amp; Hair Notes</label>
+                <textarea id="contactNotes" rows="3" class="form-control" placeholder="Tell us about allergies, preferred hair length, event dates, or specific artist request..."></textarea>
+              </div>
+
+              <div class="form-group full-width" style="flex-direction: row; align-items: center; gap: 0.6rem; margin-top: 0.3rem;">
+                <input type="checkbox" id="contactWhatsAppOpt" checked style="width: 18px; height: 18px; accent-color: var(--color-whatsapp);">
+                <label for="contactWhatsAppOpt" style="font-size: 0.88rem; color: var(--color-primary); cursor: pointer;">
+                  Receive instant appointment voucher and reminders via WhatsApp
+                </label>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-gold" style="width: 100%; padding: 1rem; font-size: 1rem; margin-top: 0.8rem;">
+              <i class="fa-regular fa-calendar-check"></i> Submit Studio Appointment Request
+            </button>
+            <p style="font-size: 0.75rem; color: #a19790; text-align: center; margin-top: 0.8rem;">
+              Front-end demonstration showcase for Infinity Smart India clients.
+            </p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- FAQ Section -->
+  <section class="section-padding" style="background: var(--color-bg-subtle); border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border);">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow">Studio Etiquette &amp; Arrival</span>
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <p class="section-subtitle">Helpful guidelines to ensure your salon visit is seamless and relaxing.</p>
+      </div>
+
+      <div style="max-width: 820px; margin: 0 auto;">
+        <div class="faq-item active">
+          <div class="faq-question">
+            <span>Is valet parking available at your Indiranagar studio?</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            Yes, complimentary white-glove valet parking is provided directly in front of our main building on 100ft Road for all studio clients.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>How early should I arrive for my appointment?</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            We recommend arriving 10 minutes prior to your scheduled time to enjoy our herbal welcome beverage and complete a brief digital skin/scalp diagnostic questionnaire.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>What is your cancellation and rescheduling policy?</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            We kindly request at least 4 hours notice for standard salon services and 48 hours for bridal makeup trials so our artists can accommodate waitlisted clients.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>Are bridal makeup services available on location at hotels/venues?</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            Yes, our creative director and bridal team travel across Bengaluru, India, and international destination weddings with full mobile studio lighting kits.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Appointment Confirmation Modal -->
+  <div class="modal-backdrop" id="contactConfirmationModal">
+    <div class="modal-box">
+      <div style="width: 60px; height: 60px; border-radius: 50%; background: var(--color-gold-light); color: var(--color-gold); display: flex; align-items: center; justify-content: center; font-size: 1.8rem; margin: 0 auto 1.2rem;">
+        <i class="fa-solid fa-circle-check"></i>
+      </div>
+      <h3 style="font-family: var(--font-serif); font-size: 1.7rem; color: var(--color-primary); margin-bottom: 0.4rem;">
+        Appointment Request Received!
+      </h3>
+      <p style="font-size: 0.95rem; color: var(--color-text-muted); margin-bottom: 1.4rem;">
+        Thank you, <strong id="modalContactName">Client</strong>. Your appointment request has been recorded.
+      </p>
+
+      <div style="background: var(--color-bg-subtle); padding: 1.2rem; border-radius: var(--radius-md); text-align: left; margin-bottom: 1.5rem; font-size: 0.88rem; line-height: 1.8;">
+        <div><strong>Booking ID:</strong> <span id="modalContactRef" style="color: var(--color-gold); font-weight: 700;">#ELAN-APT-2026-3841</span></div>
+        <div><strong>Service:</strong> <span id="modalContactService">Hair Couture</span></div>
+        <div><strong>Date &amp; Time:</strong> <span id="modalContactDateTime">Date at Time</span></div>
+        <div><strong>Venue:</strong> 124 Indiranagar 100ft Road, Bengaluru</div>
+        <div><strong>Valet Desk:</strong> Complimentary on arrival</div>
+      </div>
+
+      <div style="display: flex; gap: 0.8rem;">
+        <button class="btn btn-primary" id="closeContactModalBtn" style="flex: 1;">Done</button>
+        <a id="modalContactWhatsAppBtn" href="#" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp" style="flex: 1;">
+          <i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Global Appointment Booking Modal -->
+  <div class="modal-backdrop" id="appointmentModalBackdrop">
+    <div class="modal-box">
+      <button class="modal-close-icon" id="closeAppointmentModalBtn" aria-label="Close Booking Modal">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <div id="modalFormView">
+        <div style="text-align: center; margin-bottom: 1.8rem;">
+          <span class="section-eyebrow">Direct Studio Booking</span>
+          <h3 style="font-family: var(--font-serif); font-size: 1.7rem; color: var(--color-primary); margin-bottom: 0.4rem;">
+            Reserve Your Appointment
+          </h3>
+          <p style="font-size: 0.88rem; color: var(--color-text-muted);">
+            Select your preferred treatment, date, and artist. Instant confirmation dispatched.
+          </p>
+        </div>
+
+        <form id="globalAppointmentForm">
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="aptName" class="form-label">Full Name *</label>
+              <input type="text" id="aptName" class="form-control" placeholder="e.g. Shalini Sharma" required>
+            </div>
+
+            <div class="form-group">
+              <label for="aptPhone" class="form-label">Mobile Number *</label>
+              <input type="tel" id="aptPhone" class="form-control" placeholder="+91 98765 00000" required>
+            </div>
+
+            <div class="form-group full-width">
+              <label for="aptService" class="form-label">Desired Treatment / Service *</label>
+              <select id="aptService" class="form-control" required>
+                <option value="">Select a service category</option>
+                <option value="Bespoke Haircut & Blowout">Bespoke Haircut &amp; Blowout (₹2,800)</option>
+                <option value="French Balayage & Olaplex">French Balayage &amp; Olaplex (₹7,500)</option>
+                <option value="24k Gold Clinical Hydrafacial">24k Gold Clinical Hydrafacial (₹6,500)</option>
+                <option value="HD Airbrush Bridal Glam">HD Airbrush Bridal Glam (₹22,000)</option>
+                <option value="Russian Gel Sculpting">Russian Gel Sculpting (₹3,400)</option>
+                <option value="Signature Botanical Spa Pedicure">Signature Botanical Spa Pedicure (₹2,600)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="aptDate" class="form-label">Preferred Date *</label>
+              <input type="date" id="aptDate" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+              <label for="aptTime" class="form-label">Preferred Time Slot *</label>
+              <select id="aptTime" class="form-control" required>
+                <option value="">Select hour</option>
+                <option value="10:00 AM">10:00 AM – Morning Session</option>
+                <option value="12:30 PM">12:30 PM – Afternoon Slot</option>
+                <option value="03:00 PM">03:00 PM – Tea &amp; Glow</option>
+                <option value="05:30 PM">05:30 PM – Evening Styling</option>
+                <option value="07:00 PM">07:00 PM – Sunset Session</option>
+              </select>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-gold" style="width: 100%; padding: 0.95rem; font-size: 1rem; margin-top: 0.5rem;">
+            <i class="fa-regular fa-calendar-check"></i> Confirm Appointment Request
+          </button>
+        </form>
+      </div>
+
+      <div id="modalConfirmationView" style="display: none; text-align: center;">
+        <div style="width: 60px; height: 60px; border-radius: 50%; background: var(--color-gold-light); color: var(--color-gold); display: flex; align-items: center; justify-content: center; font-size: 1.8rem; margin: 0 auto 1.2rem;">
+          <i class="fa-solid fa-check"></i>
+        </div>
+        <h3 style="font-family: var(--font-serif); font-size: 1.7rem; color: var(--color-primary); margin-bottom: 0.4rem;">
+          Booking Request Received!
+        </h3>
+        <p style="font-size: 0.95rem; color: var(--color-text-muted); margin-bottom: 1.4rem;">
+          Thank you, <strong id="confClientName">Client</strong>. Your appointment request has been recorded.
+        </p>
+
+        <div style="background: var(--color-bg-subtle); padding: 1.2rem; border-radius: var(--radius-md); text-align: left; margin-bottom: 1.5rem; font-size: 0.88rem; line-height: 1.8;">
+          <div><strong>Booking Ref:</strong> <span id="confRefCode" style="color: var(--color-gold); font-weight: 700;">#ELAN-APT-2026-8812</span></div>
+          <div><strong>Treatment:</strong> <span id="confDetails">Service on Date</span></div>
+          <div><strong>Location:</strong> 124 Indiranagar 100ft Road, Bengaluru</div>
+          <div><strong>Valet:</strong> Complimentary on arrival</div>
+        </div>
+
+        <div style="display: flex; gap: 0.8rem;">
+          <button class="btn btn-primary" id="modalDoneBtn" style="flex: 1;">Done</button>
+          <a id="confWhatsAppBtn" href="#" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp" style="flex: 1;">
+            <i class="fa-brands fa-whatsapp"></i> WhatsApp Stylist
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="brand-name" style="color: #fff; margin-bottom: 0.8rem;">ÉLAN <span>&bull;</span> STUDIO</div>
+          <p style="font-size: 0.88rem; color: #a89d95; line-height: 1.7; margin-bottom: 1.5rem;">
+            A sanctuary of haute beauté celebrating bespoke hair artistry, clinical dermal rejuvenation, Russian nail sculpting, and couture bridal aesthetics in Bengaluru.
+          </p>
+          <div style="display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(197, 155, 109, 0.15); border: 1px solid var(--color-gold-border); padding: 0.4rem 0.9rem; border-radius: var(--radius-full); font-size: 0.78rem; color: #e8d5be;">
+            <i class="fa-solid fa-certificate"></i> Infinity Smart India &bull; Beauty Demonstration 003
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Studio Pages</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Our Atelier</a></li>
+            <li><a href="services.html">Services &amp; Pricing</a></li>
+            <li><a href="bridal-makeup.html">Bridal Makeup Couture</a></li>
+            <li><a href="gallery.html">Visual Transformations</a></li>
+            <li><a href="team.html">Our Master Artists</a></li>
+            <li><a href="offers.html">Seasonal Packages</a></li>
+            <li><a href="contact.html">Contact &amp; Location</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Operating Hours</h4>
+          <div style="display: flex; flex-direction: column; gap: 0.6rem; font-size: 0.85rem; color: #a89d95;">
+            <div>Tuesday – Saturday: 9:30 AM – 8:30 PM</div>
+            <div>Sunday: 10:00 AM – 8:00 PM</div>
+            <div>Monday: Closed (Private Bridal Bookings Only)</div>
+            <div style="margin-top: 0.5rem; color: var(--color-gold);">Complimentary Valet Parking Available</div>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Location &amp; Inquiries</h4>
+          <p style="font-size: 0.88rem; color: #a89d95; line-height: 1.6; margin-bottom: 1rem;">
+            124 Indiranagar 100ft Road, Near Domlur Flyover, Bengaluru 560038
+          </p>
+          <a href="tel:+919876543212" style="display: block; color: #fff; font-weight: 600; font-size: 0.9rem; margin-bottom: 0.4rem;">
+            <i class="fa-solid fa-phone" style="color: var(--color-gold);"></i> +91 98765 43212
+          </a>
+          <a href="mailto:concierge@elanbeautystudio.com" style="display: block; color: #a89d95; font-size: 0.85rem;">
+            <i class="fa-regular fa-envelope" style="color: var(--color-gold);"></i> concierge@elanbeautystudio.com
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 ÉLAN Beauty Studio. All rights reserved. Fictional business showcase.</div>
+        <div>Crafted by <strong>Infinity Smart India</strong> – Luxury Salon Web Solutions</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/main.js"></script>
+  <script>
+    // FAQ Accordion
+    const faqItems = document.querySelectorAll('.faq-item');
+    faqItems.forEach(item => {
+      const q = item.querySelector('.faq-question');
+      q.addEventListener('click', () => {
+        const isActive = item.classList.contains('active');
+        faqItems.forEach(f => f.classList.remove('active'));
+        if (!isActive) item.classList.add('active');
+      });
+    });
+
+    // Contact Page Form
+    const contactForm = document.getElementById('contactPageForm');
+    const contactModal = document.getElementById('contactConfirmationModal');
+    const closeContactModalBtn = document.getElementById('closeContactModalBtn');
+
+    // Default min date
+    const dateInput = document.getElementById('contactDate');
+    const today = new Date().toISOString().split('T')[0];
+    dateInput.min = today;
+    dateInput.value = today;
+
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('contactName').value;
+      const phone = document.getElementById('contactPhone').value;
+      const service = document.getElementById('contactService').value;
+      const date = document.getElementById('contactDate').value;
+      const time = document.getElementById('contactTime').value;
+      const notes = document.getElementById('contactNotes').value;
+
+      const randomRef = '#ELAN-APT-2026-' + Math.floor(1000 + Math.random() * 9000);
+
+      document.getElementById('modalContactName').textContent = name;
+      document.getElementById('modalContactRef').textContent = randomRef;
+      document.getElementById('modalContactService').textContent = service;
+      document.getElementById('modalContactDateTime').textContent = `${date} at ${time}`;
+
+      const waMsg = `Hello ÉLAN Studio! I submitted an appointment request.\nRef: ${randomRef}\nName: ${name} (${phone})\nService: ${service}\nDate: ${date} at ${time}\nNotes: ${notes}`;
+      document.getElementById('modalContactWhatsAppBtn').href = `https://wa.me/919876543212?text=${encodeURIComponent(waMsg)}`;
+
+      contactModal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+      contactForm.reset();
+    });
+
+    closeContactModalBtn.addEventListener('click', () => {
+      contactModal.classList.remove('active');
+      document.body.style.overflow = '';
+    });
+
+    contactModal.addEventListener('click', (e) => {
+      if (e.target === contactModal) {
+        contactModal.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    });
+  </script>
+</body>
+</html>

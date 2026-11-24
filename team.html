@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Meet the internationally certified master hair artists, clinical aestheticians, and bridal makeup directors at ÉLAN Beauty Studio, Bengaluru.">
+  <title>Our Team of Master Artists | ÉLAN Beauty Studio</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- Master Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <style>
+    .team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem; }
+    .team-card {
+      background: #ffffff; border-radius: var(--radius-md); border: 1px solid var(--color-border);
+      overflow: hidden; display: flex; flex-direction: column; transition: var(--transition-base);
+      box-shadow: var(--shadow-sm);
+    }
+    .team-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-hover); border-color: var(--color-gold); }
+    .team-thumb { height: 320px; overflow: hidden; position: relative; background: #e8ded6; }
+    .team-thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+    .team-card:hover .team-thumb img { transform: scale(1.06); }
+    .team-exp-badge {
+      position: absolute; bottom: 1rem; right: 1rem; background: rgba(33, 28, 25, 0.9);
+      color: #fff; font-size: 0.75rem; font-weight: 700; padding: 0.35rem 0.85rem; border-radius: var(--radius-full);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    .team-body { padding: 1.8rem; display: flex; flex-direction: column; flex-grow: 1; }
+    .team-role { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--color-gold); font-weight: 700; margin-bottom: 0.3rem; }
+    .team-name { font-family: var(--font-serif); font-size: 1.35rem; font-weight: 600; color: var(--color-primary); margin-bottom: 0.4rem; }
+    .team-creds { font-size: 0.82rem; font-weight: 600; color: #7a7069; margin-bottom: 0.9rem; }
+    .team-bio { font-size: 0.88rem; color: var(--color-text-muted); line-height: 1.6; margin-bottom: 1.4rem; }
+    .team-specialty-box {
+      background: var(--color-bg-subtle); border-radius: var(--radius-sm); padding: 0.8rem 1rem;
+      font-size: 0.82rem; margin-top: auto; border-left: 3px solid var(--color-gold);
+    }
+
+    @media (max-width: 1024px) {
+      .team-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 640px) {
+      .team-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <aside class="top-promo-bar" aria-label="Salon Announcement">
+    <div class="container top-promo-inner">
+      <div class="top-promo-message">
+        <i class="fa-solid fa-sparkles"></i>
+        <span>Indiranagar Flagship &bull; Wedding Season Consultations Now Open &bull; <strong>Code: ELANGLOW2026</strong></span>
+      </div>
+      <div class="top-promo-links">
+        <a href="tel:+919876543212"><i class="fa-solid fa-phone"></i> +91 98765 43212</a>
+        <a href="contact.html"><i class="fa-solid fa-location-dot"></i> 100ft Rd, Indiranagar, Bengaluru</a>
+        <a href="https://wa.me/919876543212?text=Hello%20ÉLAN%20Beauty%20Studio%2C%20I%20would%20like%20to%20consult%20with%20a%20stylist." target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> WhatsApp Concierge</a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Clean Minimal Header with Hamburger Menu -->
+  <header class="site-header" id="siteHeader">
+    <div class="container">
+      <nav class="navbar" aria-label="Main Navigation">
+        <!-- Logo -->
+        <a href="index.html" class="brand-logo" aria-label="ÉLAN Beauty Studio Home">
+          <div class="brand-emblem"><i class="fa-solid fa-feather-pointed"></i></div>
+          <div class="brand-text">
+            <span class="brand-name">ÉLAN <span>&bull;</span> STUDIO</span>
+            <span class="brand-tagline">HAUTE BEAUTÉ &bull; BRIDAL ATELIER</span>
+          </div>
+        </a>
+
+        <!-- Header Actions: Book Appointment CTA + Hamburger Button -->
+                <!-- Desktop Horizontal Navigation per history.md -->
+        <nav class="desktop-nav" aria-label="Main Navigation">
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="services.html" class="nav-link">Services</a>
+          <a href="bridal-makeup.html" class="nav-link">Bridal Atelier</a>
+          <a href="index.html#botanical-lab" class="nav-link"><i class="fa-solid fa-cube" style="color: var(--color-gold);"></i> 3D Elixir Lab</a>
+          <a href="offers.html" class="nav-link">Offers</a>
+          <a href="gallery.html" class="nav-link">Gallery</a>
+          <a href="team.html" class="nav-link">Artisans</a>
+          <a href="about.html" class="nav-link">About</a>
+          <a href="contact.html" class="nav-link">Contact</a>
+        </nav>
+        <div class="header-actions">
+          <button class="btn btn-gold open-appointment-modal" aria-label="Book an Appointment">
+            <i class="fa-regular fa-calendar-check"></i>
+            <span>Book an Appointment</span>
+          </button>
+
+          <button class="nav-hamburger-btn" id="openMenuDrawer" aria-label="Open Navigation Directory">
+            <i class="fa-solid fa-bars-staggered"></i>
+            <span>Menu</span>
+          </button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Offcanvas Navigation Drawer -->
+  <div class="drawer-backdrop" id="drawerBackdrop"></div>
+  <aside class="nav-drawer" id="navDrawer" aria-label="Website Pages Navigation">
+    <div class="drawer-top">
+      <div class="brand-text">
+        <span class="brand-name">ÉLAN <span>&bull;</span> STUDIO</span>
+        <span class="brand-tagline">NAVIGATION DIRECTORY</span>
+      </div>
+      <button class="drawer-close-btn" id="closeMenuDrawer" aria-label="Close Navigation">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+
+    <!-- Navigation Pages List -->
+    <nav class="drawer-menu-list">
+      <a href="index.html" class="drawer-nav-item">
+        <div class="nav-item-title-wrap">
+          <div class="nav-item-icon"><i class="fa-solid fa-house"></i></div>
+          <span class="nav-item-label">Home</span>
+        </div>
+        <span class="nav-item-badge">Main Hub</span>
+      </a>
+
+      <a href="about.html" class="drawer-nav-item">
+        <div class="nav-item-title-wrap">
+          <div class="nav-item-icon"><i class="fa-solid fa-heart"></i></div>
+          <span class="nav-item-label">About Us</span>
+        </div>
+        <span class="nav-item-badge">Philosophy</span>
+      </a>
+
+      <a href="services.html" class="drawer-nav-item">
+        <div class="nav-item-title-wrap">
+          <div class="nav-item-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+          <span class="nav-item-label">Services</span>
+        </div>
+        <span class="nav-item-badge">Full Menu</span>
+      </a>
+
+      <a href="bridal-makeup.html" class="drawer-nav-item">
+        <div class="nav-item-title-wrap">
+          <div class="nav-item-icon"><i class="fa-solid fa-crown"></i></div>
+          <span class="nav-item-label">Bridal Makeup</span>
+        </div>
+        <span class="nav-item-badge" style="color: var(--color-gold); font-weight: 700;">Couture Atelier</span>
+      </a>
+
+      <a href="gallery.html" class="drawer-nav-item">
+        <div class="nav-item-title-wrap">
+          <div class="nav-item-icon"><i class="fa-solid fa-images"></i></div>
+          <span class="nav-item-label">Gallery</span>
+        </div>
+        <span class="nav-item-badge">Transformations</span>
+      </a>
+
+      <a href="team.html" class="drawer-nav-item active">
+        <div class="nav-item-title-wrap">
+          <div class="nav-item-icon"><i class="fa-solid fa-user-group"></i></div>
+          <span class="nav-item-label">Our Team</span>
+        </div>
+        <span class="nav-item-badge">Master Artists</span>
+      </a>
+
+      <a href="offers.html" class="drawer-nav-item">
+        <div class="nav-item-title-wrap">
+          <div class="nav-item-icon"><i class="fa-solid fa-gift"></i></div>
+          <span class="nav-item-label">Offers &amp; Packages</span>
+        </div>
+        <span class="nav-item-badge">Seasonal Deals</span>
+      </a>
+
+      <a href="contact.html" class="drawer-nav-item">
+        <div class="nav-item-title-wrap">
+          <div class="nav-item-icon"><i class="fa-solid fa-envelope-open-text"></i></div>
+          <span class="nav-item-label">Contact Us</span>
+        </div>
+        <span class="nav-item-badge">Indiranagar</span>
+      </a>
+    </nav>
+
+    <!-- Bottom Contact Info in Drawer -->
+    <div style="margin-top: auto; padding-top: 1.5rem; border-top: 1px solid var(--color-border);">
+      <a href="https://wa.me/919876543212?text=Hello%20ÉLAN%20Beauty%20Studio%2C%20I%20would%20like%20to%20consult%20with%20a%20stylist." target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp" style="width: 100%; margin-bottom: 0.8rem;">
+        <i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp
+      </a>
+      <p style="font-size: 0.8rem; color: var(--color-text-muted); text-align: center;">
+        124 Indiranagar 100ft Road &bull; Open Daily 9:30 AM
+      </p>
+    </div>
+  </aside>
+
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <div class="container">
+      <div class="page-breadcrumbs">
+        <a href="index.html">Home</a>
+        <i class="fa-solid fa-chevron-right" style="font-size: 0.65rem;"></i>
+        <span>Our Team</span>
+      </div>
+      <h1 class="page-hero-title">The Artists Behind <span>Your Glow</span></h1>
+      <p class="page-hero-desc">
+        Our senior collective brings decades of international runway, clinical dermatology, and bridal mastery to every bespoke appointment.
+      </p>
+    </div>
+  </section>
+
+  <!-- Team Grid -->
+  <main class="section-padding">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow">Expert Hands</span>
+        <h2 class="section-title">Master Artists &amp; <span>Specialists</span></h2>
+        <p class="section-subtitle">Trained across London, Paris, and Germany, our professionals uphold the highest standards of safety, hygiene, and aesthetic harmony.</p>
+      </div>
+
+      <div class="team-grid">
+        <!-- Member 1 -->
+        <article class="team-card">
+          <div class="team-thumb">
+            <span class="team-exp-badge">14 Years Exp</span>
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=700&q=80" alt="Céline Rao">
+          </div>
+          <div class="team-body">
+            <span class="team-role">Founder &amp; Creative Makeup Director</span>
+            <h3 class="team-name">Céline Rao</h3>
+            <div class="team-creds">Ex-L'Oréal Paris Artistic Lead &bull; London Fashion Week</div>
+            <p class="team-bio">
+              Céline founded ÉLAN after styling over 600 brides across the UK, France, and India. Her signature is a weightless, radiant base that celebrates natural facial bone architecture.
+            </p>
+            <div class="team-specialty-box">
+              <strong>Specialisations:</strong> Temptu Airbrush Bridal, Red-Carpet Contour, Saree Draping
+            </div>
+          </div>
+        </article>
+
+        <!-- Member 2 -->
+        <article class="team-card">
+          <div class="team-thumb">
+            <span class="team-exp-badge">12 Years Exp</span>
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=700&q=80" alt="Arjun Mehta">
+          </div>
+          <div class="team-body">
+            <span class="team-role">Master Hair Director &amp; Colorist</span>
+            <h3 class="team-name">Arjun Mehta</h3>
+            <div class="team-creds">Toni&amp;Guy London Academy &bull; Kérastase Ambassador</div>
+            <p class="team-bio">
+              A master of structural geometry and color chemistry, Arjun specializes in seamless freehand balayage techniques that grow out naturally without harsh demarcation lines.
+            </p>
+            <div class="team-specialty-box">
+              <strong>Specialisations:</strong> French Balayage, Precision Bob Sculpting, Olaplex Bond Restorations
+            </div>
+          </div>
+        </article>
+
+        <!-- Member 3 -->
+        <article class="team-card">
+          <div class="team-thumb">
+            <span class="team-exp-badge">9 Years Exp</span>
+            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=700&q=80" alt="Dr. Pooja Kulkarni">
+          </div>
+          <div class="team-body">
+            <span class="team-role">Lead Clinical Aesthetician</span>
+            <h3 class="team-name">Dr. Pooja Kulkarni</h3>
+            <div class="team-creds">MBBS, FAM Germany &bull; Certified Dermal Specialist</div>
+            <p class="team-bio">
+              Dr. Pooja oversees our clinical skin sanctuary, combining non-invasive vortex extraction technologies with active clinical botanical peels to solve hyperpigmentation and barrier stress.
+            </p>
+            <div class="team-specialty-box">
+              <strong>Specialisations:</strong> 24k Gold Hydrafacials, Chemical Peels, LED Collagen Rejuvenation
+            </div>
+          </div>
+        </article>
+
+        <!-- Member 4 -->
+        <article class="team-card">
+          <div class="team-thumb">
+            <span class="team-exp-badge">8 Years Exp</span>
+            <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=700&q=80" alt="Maya Fernandez">
+          </div>
+          <div class="team-body">
+            <span class="team-role">Senior Bridal &amp; Hair Maestro</span>
+            <h3 class="team-name">Maya Fernandez</h3>
+            <div class="team-creds">VLCC Gold Medalist &bull; Temptu Pro Certified</div>
+            <p class="team-bio">
+              Renowned for her calm demeanor in busy bridal dressing suites, Maya is an expert in long-lasting traditional Muhurtham hair settings with fresh South Indian jasmine arrangements.
+            </p>
+            <div class="team-specialty-box">
+              <strong>Specialisations:</strong> Traditional Bridal Hair Architecture, Gajra Art, HD Makeup
+            </div>
+          </div>
+        </article>
+
+        <!-- Member 5 -->
+        <article class="team-card">
+          <div class="team-thumb">
+            <span class="team-exp-badge">7 Years Exp</span>
+            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=700&q=80" alt="Natasha Sen">
+          </div>
+          <div class="team-body">
+            <span class="team-role">Master Nail Sculptor &amp; Artist</span>
+            <h3 class="team-name">Natasha Sen</h3>
+            <div class="team-creds">Akzéntz Certified &bull; Russian E-file Specialist</div>
+            <p class="team-bio">
+              Natasha treats nails as miniature canvases. Her meticulous dry Russian e-file cuticle techniques allow gel polish to sit flawlessly for 4+ weeks with zero chipping or lifting.
+            </p>
+            <div class="team-specialty-box">
+              <strong>Specialisations:</strong> Russian E-File Manicures, Hard Gel Apex Sculpting, Minimalist Art
+            </div>
+          </div>
+        </article>
+
+        <!-- Member 6 -->
+        <article class="team-card">
+          <div class="team-thumb">
+            <span class="team-exp-badge">11 Years Exp</span>
+            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=700&q=80" alt="Karthik Varma">
+          </div>
+          <div class="team-body">
+            <span class="team-role">Studio General Manager &amp; Hospitality</span>
+            <h3 class="team-name">Karthik Varma</h3>
+            <div class="team-creds">Ex-Taj Hotels Luxury Guest Relations Lead</div>
+            <p class="team-bio">
+              Karthik guarantees that your time at ÉLAN is effortless from the moment our valet greets you at the curb to your departure. He oversees hygiene audits and bridal concierge schedules.
+            </p>
+            <div class="team-specialty-box">
+              <strong>Specialisations:</strong> Luxury Guest Experience, Bridal Trousseau Logistics, Studio Hygiene
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- Continuing Education Pledge -->
+      <div style="background: linear-gradient(135deg, #1e1b18 0%, #2b2522 100%); border-radius: var(--radius-lg); padding: 3.5rem; text-align: center; color: #fff; margin-top: 4.5rem; border: 1px solid var(--color-gold-border);">
+        <h3 style="font-family: var(--font-serif); font-size: 2rem; margin-bottom: 0.8rem; color: #fff;">
+          Continuous Education &bull; 120 Hours Yearly
+        </h3>
+        <p style="font-size: 1rem; color: #d6cac2; max-width: 650px; margin: 0 auto 2rem; line-height: 1.7;">
+          Every team member at ÉLAN attends biannual European masterclasses to master emerging hair science, safe chemical compounding, and sanitation protocols.
+        </p>
+        <button class="btn btn-gold open-appointment-modal">
+          <i class="fa-regular fa-calendar-check"></i> Book an Appointment with an Artist
+        </button>
+      </div>
+    </div>
+  </main>
+
+  <!-- Global Appointment Booking Modal -->
+  <div class="modal-backdrop" id="appointmentModalBackdrop">
+    <div class="modal-box">
+      <button class="modal-close-icon" id="closeAppointmentModalBtn" aria-label="Close Booking Modal">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <div id="modalFormView">
+        <div style="text-align: center; margin-bottom: 1.8rem;">
+          <span class="section-eyebrow">Direct Studio Booking</span>
+          <h3 style="font-family: var(--font-serif); font-size: 1.7rem; color: var(--color-primary); margin-bottom: 0.4rem;">
+            Reserve Your Appointment
+          </h3>
+          <p style="font-size: 0.88rem; color: var(--color-text-muted);">
+            Select your preferred treatment, date, and artist. Instant confirmation dispatched.
+          </p>
+        </div>
+
+        <form id="globalAppointmentForm">
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="aptName" class="form-label">Full Name *</label>
+              <input type="text" id="aptName" class="form-control" placeholder="e.g. Shalini Sharma" required>
+            </div>
+
+            <div class="form-group">
+              <label for="aptPhone" class="form-label">Mobile Number *</label>
+              <input type="tel" id="aptPhone" class="form-control" placeholder="+91 98765 00000" required>
+            </div>
+
+            <div class="form-group full-width">
+              <label for="aptService" class="form-label">Desired Treatment / Service *</label>
+              <select id="aptService" class="form-control" required>
+                <option value="">Select a service category</option>
+                <option value="Bespoke Haircut with Arjun Mehta">Bespoke Haircut with Arjun Mehta (₹3,200)</option>
+                <option value="Balayage with Arjun Mehta">Balayage with Arjun Mehta (₹8,500)</option>
+                <option value="Hydrafacial with Dr. Pooja">Hydrafacial with Dr. Pooja Kulkarni (₹6,500)</option>
+                <option value="Bridal Consultation with Céline">Bridal Consultation with Céline Rao</option>
+                <option value="Russian Nails with Natasha">Russian Gel Nails with Natasha Sen (₹3,400)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="aptDate" class="form-label">Preferred Date *</label>
+              <input type="date" id="aptDate" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+              <label for="aptTime" class="form-label">Preferred Time Slot *</label>
+              <select id="aptTime" class="form-control" required>
+                <option value="">Select hour</option>
+                <option value="10:00 AM">10:00 AM – Morning Session</option>
+                <option value="12:30 PM">12:30 PM – Afternoon Slot</option>
+                <option value="03:00 PM">03:00 PM – Tea &amp; Glow</option>
+                <option value="05:30 PM">05:30 PM – Evening Styling</option>
+                <option value="07:00 PM">07:00 PM – Sunset Session</option>
+              </select>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-gold" style="width: 100%; padding: 0.95rem; font-size: 1rem; margin-top: 0.5rem;">
+            <i class="fa-regular fa-calendar-check"></i> Confirm Appointment Request
+          </button>
+        </form>
+      </div>
+
+      <div id="modalConfirmationView" style="display: none; text-align: center;">
+        <div style="width: 60px; height: 60px; border-radius: 50%; background: var(--color-gold-light); color: var(--color-gold); display: flex; align-items: center; justify-content: center; font-size: 1.8rem; margin: 0 auto 1.2rem;">
+          <i class="fa-solid fa-check"></i>
+        </div>
+        <h3 style="font-family: var(--font-serif); font-size: 1.7rem; color: var(--color-primary); margin-bottom: 0.4rem;">
+          Booking Request Received!
+        </h3>
+        <p style="font-size: 0.95rem; color: var(--color-text-muted); margin-bottom: 1.4rem;">
+          Thank you, <strong id="confClientName">Client</strong>. Your appointment request has been recorded.
+        </p>
+
+        <div style="background: var(--color-bg-subtle); padding: 1.2rem; border-radius: var(--radius-md); text-align: left; margin-bottom: 1.5rem; font-size: 0.88rem; line-height: 1.8;">
+          <div><strong>Booking Ref:</strong> <span id="confRefCode" style="color: var(--color-gold); font-weight: 700;">#ELAN-APT-2026-8812</span></div>
+          <div><strong>Treatment:</strong> <span id="confDetails">Service on Date</span></div>
+          <div><strong>Location:</strong> 124 Indiranagar 100ft Road, Bengaluru</div>
+          <div><strong>Valet:</strong> Complimentary on arrival</div>
+        </div>
+
+        <div style="display: flex; gap: 0.8rem;">
+          <button class="btn btn-primary" id="modalDoneBtn" style="flex: 1;">Done</button>
+          <a id="confWhatsAppBtn" href="#" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp" style="flex: 1;">
+            <i class="fa-brands fa-whatsapp"></i> WhatsApp Stylist
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="brand-name" style="color: #fff; margin-bottom: 0.8rem;">ÉLAN <span>&bull;</span> STUDIO</div>
+          <p style="font-size: 0.88rem; color: #a89d95; line-height: 1.7; margin-bottom: 1.5rem;">
+            A sanctuary of haute beauté celebrating bespoke hair artistry, clinical dermal rejuvenation, Russian nail sculpting, and couture bridal aesthetics in Bengaluru.
+          </p>
+          <div style="display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(197, 155, 109, 0.15); border: 1px solid var(--color-gold-border); padding: 0.4rem 0.9rem; border-radius: var(--radius-full); font-size: 0.78rem; color: #e8d5be;">
+            <i class="fa-solid fa-certificate"></i> Infinity Smart India &bull; Beauty Demonstration 003
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Studio Pages</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Our Atelier</a></li>
+            <li><a href="services.html">Services &amp; Pricing</a></li>
+            <li><a href="bridal-makeup.html">Bridal Makeup Couture</a></li>
+            <li><a href="gallery.html">Visual Transformations</a></li>
+            <li><a href="team.html">Our Master Artists</a></li>
+            <li><a href="offers.html">Seasonal Packages</a></li>
+            <li><a href="contact.html">Contact &amp; Location</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Operating Hours</h4>
+          <div style="display: flex; flex-direction: column; gap: 0.6rem; font-size: 0.85rem; color: #a89d95;">
+            <div>Tuesday – Saturday: 9:30 AM – 8:30 PM</div>
+            <div>Sunday: 10:00 AM – 8:00 PM</div>
+            <div>Monday: Closed (Private Bridal Bookings Only)</div>
+            <div style="margin-top: 0.5rem; color: var(--color-gold);">Complimentary Valet Parking Available</div>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer-col-title">Location &amp; Inquiries</h4>
+          <p style="font-size: 0.88rem; color: #a89d95; line-height: 1.6; margin-bottom: 1rem;">
+            124 Indiranagar 100ft Road, Near Domlur Flyover, Bengaluru 560038
+          </p>
+          <a href="tel:+919876543212" style="display: block; color: #fff; font-weight: 600; font-size: 0.9rem; margin-bottom: 0.4rem;">
+            <i class="fa-solid fa-phone" style="color: var(--color-gold);"></i> +91 98765 43212
+          </a>
+          <a href="mailto:concierge@elanbeautystudio.com" style="display: block; color: #a89d95; font-size: 0.85rem;">
+            <i class="fa-regular fa-envelope" style="color: var(--color-gold);"></i> concierge@elanbeautystudio.com
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>&copy; 2026 ÉLAN Beauty Studio. All rights reserved. Fictional business showcase.</div>
+        <div>Crafted by <strong>Infinity Smart India</strong> – Luxury Salon Web Solutions</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+    <!-- Mobile Bottom Quick Dock per history.md -->
+  <nav class="mobile-quick-dock" aria-label="Mobile Quick Access">
+    <a href="tel:+919876543212" class="dock-item">
+      <i class="fa-solid fa-phone"></i>
+      <span>Call</span>
+    </a>
+    <a href="services.html" class="dock-item">
+      <i class="fa-solid fa-wand-magic-sparkles"></i>
+      <span>Services</span>
+    </a>
+    <button class="dock-item open-appointment-modal" data-service="Mobile Quick Booking" style="background:none;border:none;">
+      <i class="fa-regular fa-calendar-check"></i>
+      <span>Book</span>
+    </button>
+    <a href="index.html#botanical-lab" class="dock-item">
+      <i class="fa-solid fa-cube"></i>
+      <span>3D Lab</span>
+    </a>
+    <a href="https://wa.me/919876543212?text=Hello%20ÉLAN%20Beauty%20Studio!%20I%20would%20like%20to%20inquire%20about%20an%20appointment." target="_blank" rel="noopener" class="dock-item">
+      <i class="fa-brands fa-whatsapp"></i>
+      <span>WhatsApp</span>
+    </a>
+  </nav>
+
+  <!-- Master Interactive Scripts per history.md -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase-client.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
