@@ -398,10 +398,10 @@ input, select, textarea {
   display: none;
 }
 
-/* Mobile Top Announcement: Single Crisp Line */
-@media (max-width: 768px) {
+/* Mobile Top Announcement: Single Crisp Line across all tablet & mobile screens */
+@media (max-width: 991px) {
   .top-info-bar {
-    padding: 0.4rem 0.5rem;
+    padding: 0.45rem 0.5rem;
     font-size: 0.72rem;
     line-height: 1.3;
   }
