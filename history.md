@@ -110,3 +110,18 @@ CREATE POLICY "Public read beauty_consultations" ON public.beauty_consultations 
 - **GitHub Repository**: `https://github.com/ilath9198-wq/003-beauty-and-personal-care.git`
 - **Vercel Production Domain**: `https://003-beauty-and-personal-care.vercel.app`
 - **Zero Impact Guarantee**: Isolated to `003-beauty-and-personal-care`, never affecting `001 Food and Restaurant` or other demo repositories.
+
+---
+
+## 5. Mandatory Hero Section Architecture (Permanent Rule for All Projects)
+> **MANDATE**: In every website created in this chat, the hero section MUST incorporate an aesthetic, high-impact photographic/visual background with text layered directly over it. **Never use plain text on a plain, static solid or flat background.**
+
+### Desktop & Windows Implementation:
+- **Atmospheric Visual Depth**: Hero section features a full-bleed luxury visual background (photographic or immersive texture) paired with a directional gradient scrim (e.g., `linear-gradient(135deg, rgba(18, 15, 13, 0.88) 0%, rgba(18, 15, 13, 0.72) 48%, rgba(18, 15, 13, 0.38) 100%)`) allowing clear headline legibility while showcasing rich visual texture.
+- **Layered Elements**: High-contrast typography (pure white headlines, warm terracotta accents, frosted glass pill badges) paired with an offset visual portrait card or focal showcase piece.
+
+### Mobile Screen Implementation (`max-width: 991px`):
+- **Immediate Visual Impact Above The Fold**: The primary subject (e.g., the model or flagship product) is integrated directly into the hero background layer (`center top / cover no-repeat`) with an optical gradient scrim (`linear-gradient(180deg, rgba(18, 15, 13, 0.52) 0%, rgba(18, 15, 13, 0.80) 55%, rgba(18, 15, 13, 0.96) 100%)`).
+- **Zero Scroll Requirement**: The user immediately sees the visual imagery and model/product behind the headline and call-to-action buttons upon landing on the page.
+- **No Redundant Duplicate Media**: Redundant standalone image cards below the hero copy are hidden on mobile (`display: none !important;`) so the user never has to scroll down past plain text to see the visual subject.
+
