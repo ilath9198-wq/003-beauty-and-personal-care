@@ -1,13 +1,12 @@
 {
   "name": "003-beauty-and-personal-care",
   "version": "1.0.0",
-  "description": "ÉLAN Beauty Studio & Botanical Lab • Real 3D STL Mesh Loader & Subtle Botanical Animation",
+  "description": "ÉLAN Beauté Atelier • Editorial Botanical Skincare, Clinical Aesthetics & Haute Coiffure",
   "main": "index.html",
   "scripts": {
     "start": "npx serve ."
   },
   "dependencies": {
-    "@supabase/supabase-js": "^2.49.1",
-    "three": "^0.128.0"
+    "@supabase/supabase-js": "^2.49.1"
   }
 }
